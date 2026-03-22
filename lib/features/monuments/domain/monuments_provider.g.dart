@@ -46,7 +46,7 @@ final class MonumentsProvider
   }
 }
 
-String _$monumentsHash() => r'6af788676c67b1dc750eceaec40a5443979dce05';
+String _$monumentsHash() => r'4a4fa1c2ae57e43a9deec8a69accaad1713bbaa4';
 
 @ProviderFor(monumentOfTheDay)
 const monumentOfTheDayProvider = MonumentOfTheDayProvider._();
@@ -84,7 +84,7 @@ final class MonumentOfTheDayProvider
   }
 }
 
-String _$monumentOfTheDayHash() => r'f08751f4e39d348f821143e3d663c0fe4f2d48d9';
+String _$monumentOfTheDayHash() => r'1da58b9f1e658b5e5d00e772a79a3a86bf4af187';
 
 @ProviderFor(SearchQuery)
 const searchQueryProvider = SearchQueryProvider._();
@@ -176,3 +176,42 @@ final class FilteredMonumentsProvider
 }
 
 String _$filteredMonumentsHash() => r'691de3ed61fb95053b6cb41eccf1be0d3b17de06';
+
+@ProviderFor(otherExpeditions)
+const otherExpeditionsProvider = OtherExpeditionsProvider._();
+
+final class OtherExpeditionsProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Monument>>,
+          List<Monument>,
+          FutureOr<List<Monument>>
+        >
+    with $FutureModifier<List<Monument>>, $FutureProvider<List<Monument>> {
+  const OtherExpeditionsProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'otherExpeditionsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$otherExpeditionsHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<List<Monument>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<Monument>> create(Ref ref) {
+    return otherExpeditions(ref);
+  }
+}
+
+String _$otherExpeditionsHash() => r'adb32e7ddcde4baa705caae2f55b0bedb4b8a8d0';

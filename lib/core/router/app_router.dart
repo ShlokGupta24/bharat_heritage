@@ -8,7 +8,6 @@ import 'package:bharat_heritage/presentation/screens/sign_up_screen.dart';
 import '../../features/auth/domain/auth_provider.dart';
 import '../../presentation/screens/home_screen.dart';
 
-import '../../features/monuments/presentation/monument_detail_screen.dart';
 import '../../features/monuments/domain/monuments_provider.dart';
 import '../../features/monuments/data/models/monument.dart';
 
@@ -60,7 +59,7 @@ GoRouter appRouter(Ref ref) {
         path: '/signup',
         builder: (context, state) => const SignUpScreen(),
       ),
-      GoRoute(
+      /*GoRoute(
         path: '/monument/:id',
         builder: (context, state) {
           final id = state.pathParameters['id'];
@@ -68,7 +67,7 @@ GoRouter appRouter(Ref ref) {
           final monument = listFirstWhere(monuments, (m) => m.id == id) ?? monuments.first;
           return MonumentDetailScreen(monument: monument);
         },
-      ),
+      ),*/
     ],
   );
 }
