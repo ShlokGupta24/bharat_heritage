@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1064318448585",
+    "project_id": "bharat-heritage-a5f12",
+    "storage_bucket": "bharat-heritage-a5f12.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064318448585:android:0a9fceea46f7cad5e06e18",
+        "android_client_info": {
+          "package_name": "com.example.bharat_heritage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOOryNP-JVJvs83jcm0hGTISQEDGm13wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

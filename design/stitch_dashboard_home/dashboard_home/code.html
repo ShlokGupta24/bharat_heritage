@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BharatHeritage Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;900&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-container": "#2e3192",
+                        "inverse-primary": "#4f54b4",
+                        "secondary-fixed": "#ffdad3",
+                        "surface-variant": "#34343b",
+                        "on-primary-fixed-variant": "#373a9b",
+                        "surface-bright": "#39383f",
+                        "on-tertiary": "#4c2700",
+                        "on-primary-container": "#9da1ff",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#3e0500",
+                        "primary-fixed": "#e1e0ff",
+                        "on-background": "#e4e1ea",
+                        "on-tertiary-fixed-variant": "#6d3a00",
+                        "on-tertiary-fixed": "#2e1500",
+                        "surface-container-high": "#2a2930",
+                        "on-error": "#690005",
+                        "secondary-container": "#802918",
+                        "inverse-surface": "#e4e1ea",
+                        "surface-container": "#1f1f25",
+                        "background": "#131319",
+                        "on-tertiary-container": "#f6922c",
+                        "surface-container-highest": "#34343b",
+                        "surface-container-low": "#1b1b21",
+                        "primary": "#c0c1ff",
+                        "surface-tint": "#c0c1ff",
+                        "secondary-fixed-dim": "#ffb4a5",
+                        "on-secondary-fixed-variant": "#802918",
+                        "on-secondary-container": "#ff9a85",
+                        "surface-dim": "#131319",
+                        "on-error-container": "#ffdad6",
+                        "on-primary": "#1e2084",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#464652",
+                        "on-secondary": "#611205",
+                        "on-surface-variant": "#c7c5d4",
+                        "tertiary-container": "#613300",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed-dim": "#ffb77a",
+                        "secondary": "#ffb4a5",
+                        "inverse-on-surface": "#303036",
+                        "surface": "#131319",
+                        "outline": "#908f9d",
+                        "tertiary": "#ffb77a",
+                        "tertiary-fixed": "#ffdcc2",
+                        "surface-container-lowest": "#0e0e14",
+                        "on-primary-fixed": "#04006d",
+                        "on-surface": "#e4e1ea"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(52, 52, 59, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .skeuo-button {
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+        .skeuo-button:active {
+            transform: scale(0.96);
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body selection:bg-tertiary selection:text-on-tertiary">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#131319]/60 backdrop-blur-xl dark:bg-[#131319]/60">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#ffb77a]" data-icon="menu">menu</span>
+<h1 class="font-['Noto_Serif'] text-2xl font-black text-[#2e3192] dark:text-[#c7c5d4] drop-shadow-[0_1px_rgba(255,255,255,0.2)]">BharatHeritage</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#c7c5d4] hover:bg-[#2a2930] transition-colors p-2 rounded-full cursor-pointer" data-icon="notifications">notifications</span>
+</div>
+</header>
+<main class="pt-20 pb-32 px-4 max-w-5xl mx-auto space-y-8">
+<!-- Hero Section: Monument of the Day -->
+<section class="relative h-[480px] w-full overflow-hidden rounded-xl group">
+<img alt="Taj Mahal Monument of the Day" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Majestic Taj Mahal at sunrise with soft morning mist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgMEohbC1bXtHYCYNmtt6MkbPDdgfsUxXwBiWrojGvh1cnbHXhTNJvxwE8xvd7BICWHF3aqr5f4xHsLPUr1aUb0cxrPCpMWeSbRe9G4Ue-Uln0nrsT8Unubob5-OoG5bdQUExDIBgMw_YrNc6uvltAkaMNldGkC6IhLFxKMu9h_mM7OaapM_224heBH0xeSJGtpn23j6inahjdKtSbvI_8b9QicXJKhUqObD5KQ3Gj72TbXHRfhEdUzP9WXS2UUj4K6qGv7NkVgcY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<div class="glass-card p-6 rounded-lg inline-block border border-white/10 max-w-lg">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-tertiary font-bold mb-2 block">Monument of the Day</span>
+<h2 class="font-headline text-4xl font-black text-white mb-3 tracking-tight italic">Taj Mahal</h2>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-4">An ivory-white marble mausoleum on the southern bank of the river Yamuna. Witness the "Eternal Teardrop" in the soft morning light.</p>
+<button class="skeuo-button bg-gradient-to-br from-primary-container to-[#1e2084] text-white px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 text-sm">
+                        Plan Expedition
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Intelligence Modules (Bento Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- AQI Health Gauge -->
+<div class="surface-container-low p-6 rounded-xl flex flex-col items-center justify-between border border-white/5 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-6xl" data-icon="air">air</span>
+</div>
+<h3 class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant self-start mb-6">Environment • AQI</h3>
+<div class="relative flex items-center justify-center w-32 h-32 mb-4">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-variant" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-tertiary" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364.4" stroke-dashoffset="100" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="text-3xl font-black text-white">72</span>
+<span class="text-[10px] font-bold text-tertiary uppercase">Moderate</span>
+</div>
+</div>
+<p class="text-[11px] text-center text-on-surface-variant px-4">Ideal for outdoor marble viewing. Carry a mask if sensitive.</p>
+</div>
+<!-- Crowd Trends Chart Widget -->
+<div class="md:col-span-2 surface-container-low p-6 rounded-xl border border-white/5 flex flex-col">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">Intelligence • Crowd Density</h3>
+<p class="font-headline text-xl text-white">Quiet Hours Predicted</p>
+</div>
+<div class="bg-secondary-container/30 px-3 py-1 rounded-full border border-secondary/20 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+<span class="text-[10px] font-bold text-secondary uppercase">Live Data</span>
+</div>
+</div>
+<!-- Simple Asymmetric Line Chart Representation -->
+<div class="flex-grow flex items-end gap-2 px-2 h-32">
+<div class="flex-1 bg-surface-variant h-1/4 rounded-t-sm"></div>
+<div class="flex-1 bg-surface-variant h-2/5 rounded-t-sm"></div>
+<div class="flex-1 bg-tertiary/40 h-3/4 rounded-t-sm border-t-2 border-tertiary"></div>
+<div class="flex-1 bg-tertiary h-full rounded-t-sm border-t-2 border-white shadow-[0_0_15px_rgba(255,183,122,0.3)]"></div>
+<div class="flex-1 bg-tertiary/60 h-2/3 rounded-t-sm"></div>
+<div class="flex-1 bg-surface-variant h-1/3 rounded-t-sm"></div>
+<div class="flex-1 bg-surface-variant h-1/5 rounded-t-sm"></div>
+<div class="flex-1 bg-surface-variant h-1/6 rounded-t-sm"></div>
+</div>
+<div class="flex justify-between mt-4 font-label text-[9px] text-outline px-1">
+<span>06:00</span>
+<span>09:00 (Peak)</span>
+<span>12:00</span>
+<span>15:00</span>
+<span>18:00</span>
+</div>
+</div>
+<!-- Passport Widget -->
+<div class="md:col-span-2 surface-container p-6 rounded-xl border border-white/10 bg-gradient-to-br from-surface-container to-surface-container-low flex items-center justify-between group cursor-pointer hover:border-tertiary/30 transition-all">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 rounded-full bg-tertiary-container/30 flex items-center justify-center border border-tertiary/20 shadow-inner overflow-hidden relative">
+<span class="material-symbols-outlined text-4xl text-tertiary" data-icon="auto_stories" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent"></div>
+</div>
+<div>
+<h4 class="font-headline text-2xl text-white font-bold mb-1">Explorer Passport</h4>
+<div class="flex items-center gap-2">
+<span class="font-label text-[10px] text-tertiary font-black bg-tertiary-container/40 px-2 py-0.5 rounded">LEVEL 4</span>
+<span class="text-on-surface-variant text-sm font-medium">12 Stamps Unlocked</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<div class="text-right">
+<span class="block text-[10px] font-bold text-outline uppercase">Next Reward</span>
+<span class="text-xs text-on-surface">Golden Temple Badge</span>
+</div>
+<div class="w-32 h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-3/4"></div>
+</div>
+</div>
+</div>
+<!-- Quick Action: Heritage Compass -->
+<div class="surface-container-high p-6 rounded-xl flex flex-col items-center justify-center text-center gap-4 group">
+<div class="relative w-24 h-24 rounded-full border-2 border-dashed border-outline-variant flex items-center justify-center group-hover:rotate-45 transition-transform duration-1000">
+<div class="w-1 h-12 bg-tertiary absolute top-2 rounded-full shadow-[0_0_8px_rgba(255,183,122,0.8)]"></div>
+<span class="material-symbols-outlined text-3xl text-white" data-icon="explore">explore</span>
+</div>
+<div>
+<span class="font-label text-[10px] text-tertiary font-black block">HERITAGE COMPASS</span>
+<p class="text-xs text-on-surface-variant mt-1 leading-tight">Nearby gems within 5km of your location</p>
+</div>
+</div>
+</div>
+<!-- Recent Collections Horizontal -->
+<section class="space-y-4">
+<div class="flex justify-between items-end">
+<h3 class="font-headline text-2xl font-bold tracking-tight">Your Expeditions</h3>
+<a class="text-tertiary text-xs font-bold uppercase tracking-widest border-b border-tertiary/30 pb-1" href="#">View Archive</a>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-4 -mx-4 px-4">
+<div class="flex-none w-64 surface-container rounded-lg overflow-hidden border border-white/5">
+<div class="h-40 relative">
+<img alt="Agra Fort" class="w-full h-full object-cover" data-alt="Red sandstone walls of Agra Fort at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkOrQNJMJ9yx5cxkIqyuJgjmefwc9rifECNhNyFeWI7sI-l2Bc3LCiD3nSt0cksZlJ2NQgHLYvavTudjJcLcCdZyC6niRLr2v-FC-WRFq4IrNs0ajbJNWEZJg93Uh27JDhtBOh6q1xi8N4AMCxLICI9_dkx7b4cZjaDI0aHA5QfVUwUS8_19mM3UqTQUHbu95yWQO51GbHoaElbjZomJgb-oFK5JRzti3gE3UT4f-r8_LcoysPcRlVsf2Rj54rRPE7HkzkC0vhtG0"/>
+<div class="absolute top-2 right-2 bg-black/40 backdrop-blur-md px-2 py-1 rounded text-[9px] font-bold text-white flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]" data-icon="event">event</span> 12 OCT
+                        </div>
+</div>
+<div class="p-4">
+<h5 class="font-bold text-sm text-white">Agra Fort</h5>
+<p class="text-[11px] text-on-surface-variant mt-1">UNESCO World Heritage Site</p>
+</div>
+</div>
+<div class="flex-none w-64 surface-container rounded-lg overflow-hidden border border-white/5 opacity-80">
+<div class="h-40 relative">
+<img alt="Hawa Mahal" class="w-full h-full object-cover" data-alt="Intricate pink facade of Hawa Mahal Jaipur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQclrxVkKxYQ7JbBV0WMMxb7QrXzTdvnKvebRhJpEYYQYSKrlk7YOSOs2liZ1spPX2_Cqkwx8lChh7w0RUxcWeCoKVGwG2_UWlQ1Jf7WsddGvKgW-h3L_WQkIYPCHzLO1SyMCa3b89pGTQj_INLXIwcVXKy5ultNiLrqFarcYAIxpmP1zyXBiwN01lrzmtZvvrQkYFgUhRJ9qeIHTf8cDZiHJ8wUdcV9c2QdeI3OPL-qQRRKDr2UbpelTTswIvS4iZYTNlSDUzWdg"/>
+<div class="absolute top-2 right-2 bg-black/40 backdrop-blur-md px-2 py-1 rounded text-[9px] font-bold text-white flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]" data-icon="event">event</span> 05 OCT
+                        </div>
+</div>
+<div class="p-4">
+<h5 class="font-bold text-sm text-white">Hawa Mahal</h5>
+<p class="text-[11px] text-on-surface-variant mt-1">The Palace of Winds, Jaipur</p>
+</div>
+</div>
+<div class="flex-none w-64 surface-container rounded-lg overflow-hidden border border-white/5 opacity-60">
+<div class="h-40 relative">
+<img alt="Qutub Minar" class="w-full h-full object-cover" data-alt="Towering brick minaret of Qutub Minar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpDBm6VR_7DYo88aZ2c5BZa6c-PvhSqTFULg4cpc9XZU1hmA0TNG34bKTm7VuThcS3t73udyMb_PaJ1FqOdhvjNdV_lPqr8fkKPXgijii8RCExurJOYOb9XGTxLlzODVoyU7XKbFiNM0NswxHlotHu3PSwux05Laan3s7GSXsQQS5yzwNIYfZAgBAccoy-sH3qhj0PVmTSYaT2OQ3apVmIevgKMM22g-Pgn84kSmRejE1IbQ2y0FPffdRmrMQ05yM8odFPSyTM-hI"/>
+</div>
+<div class="p-4">
+<h5 class="font-bold text-sm text-white">Qutub Minar</h5>
+<p class="text-[11px] text-on-surface-variant mt-1">Mehrauli, New Delhi</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Navigation Shell: BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#131319]/60 backdrop-blur-2xl dark:bg-[#131319]/60 border-t border-white/10 shadow-[0_-4px_24px_rgba(0,0,0,0.4)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-[#ffb77a] bg-[#802918]/20 rounded-xl px-4 py-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] font-bold mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#c7c5d4] px-4 py-2 hover:text-[#ffb77a] active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] font-bold mt-1">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#c7c5d4] px-4 py-2 hover:text-[#ffb77a] active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] font-bold mt-1">Passport</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#c7c5d4] px-4 py-2 hover:text-[#ffb77a] active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] font-bold mt-1">Profile</span>
+</a>
+</nav>
+<!-- FAB Action (Contextual) -->
+<button class="fixed bottom-28 right-6 w-14 h-14 bg-tertiary text-on-tertiary rounded-full shadow-2xl flex items-center justify-center skeuo-button z-40 transition-transform hover:rotate-12">
+<span class="material-symbols-outlined text-3xl font-bold" data-icon="qr_code_scanner">qr_code_scanner</span>
+</button>
+</body></html>

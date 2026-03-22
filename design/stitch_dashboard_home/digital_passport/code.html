@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BharatHeritage | Digital Passport</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;900&amp;family=Manrope:wght@300;400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-container": "#2e3192",
+                        "inverse-primary": "#4f54b4",
+                        "secondary-fixed": "#ffdad3",
+                        "surface-variant": "#34343b",
+                        "on-primary-fixed-variant": "#373a9b",
+                        "surface-bright": "#39383f",
+                        "on-tertiary": "#4c2700",
+                        "on-primary-container": "#9da1ff",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#3e0500",
+                        "primary-fixed": "#e1e0ff",
+                        "on-background": "#e4e1ea",
+                        "on-tertiary-fixed-variant": "#6d3a00",
+                        "on-tertiary-fixed": "#2e1500",
+                        "surface-container-high": "#2a2930",
+                        "on-error": "#690005",
+                        "secondary-container": "#802918",
+                        "inverse-surface": "#e4e1ea",
+                        "surface-container": "#1f1f25",
+                        "background": "#131319",
+                        "on-tertiary-container": "#f6922c",
+                        "surface-container-highest": "#34343b",
+                        "surface-container-low": "#1b1b21",
+                        "primary": "#c0c1ff",
+                        "surface-tint": "#c0c1ff",
+                        "secondary-fixed-dim": "#ffb4a5",
+                        "on-secondary-fixed-variant": "#802918",
+                        "on-secondary-container": "#ff9a85",
+                        "surface-dim": "#131319",
+                        "on-error-container": "#ffdad6",
+                        "on-primary": "#1e2084",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#464652",
+                        "on-secondary": "#611205",
+                        "on-surface-variant": "#c7c5d4",
+                        "tertiary-container": "#613300",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed-dim": "#ffb77a",
+                        "secondary": "#ffb4a5",
+                        "inverse-on-surface": "#303036",
+                        "surface": "#131319",
+                        "outline": "#908f9d",
+                        "tertiary": "#ffb77a",
+                        "tertiary-fixed": "#ffdcc2",
+                        "surface-container-lowest": "#0e0e14",
+                        "on-primary-fixed": "#04006d",
+                        "on-surface": "#e4e1ea"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .embossed-text {
+            text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.1), 0px -1px 0px rgba(0, 0, 0, 0.5);
+        }
+        .glass-card {
+            background: rgba(52, 52, 59, 0.4);
+            backdrop-filter: blur(20px);
+        }
+        .stamp-texture {
+            mask-image: url("https://www.transparenttextures.com/patterns/stucco.png");
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-tertiary selection:text-on-tertiary">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#131319]/60 backdrop-blur-xl dark:bg-[#131319]/60">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#ffb77a] cursor-pointer">menu</span>
+<h1 class="font-['Noto_Serif'] text-2xl font-black text-[#2e3192] dark:text-[#c7c5d4] drop-shadow-[0_1px_rgba(255,255,255,0.2)]">BharatHeritage</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#ffb77a] cursor-pointer">notifications</span>
+</div>
+<div class="absolute bottom-0 left-0 w-full bg-gradient-to-b from-[#1b1b21] to-transparent h-px"></div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto space-y-12">
+<!-- Hero / Passport Summary Section -->
+<section class="relative overflow-hidden rounded-xl bg-surface-container-low p-8 md:p-12 border border-white/5">
+<div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-primary-container/20 rounded-full blur-[100px]"></div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="space-y-4">
+<span class="font-label text-tertiary tracking-[0.2em] text-xs uppercase font-bold">Document No. BH-8829-2024</span>
+<h2 class="font-headline text-4xl md:text-6xl font-black embossed-text text-on-surface">Digital Passport</h2>
+<p class="text-on-surface-variant max-w-md text-lg leading-relaxed">Your curated archive of journeys across the Indian subcontinent. Every site visited is a fragment of history preserved.</p>
+</div>
+<div class="w-full md:w-72 space-y-3">
+<div class="flex justify-between items-end mb-1">
+<span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Journey Progress</span>
+<span class="font-headline text-2xl font-bold text-tertiary">42%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[42%] bg-gradient-to-r from-secondary-container to-tertiary shadow-[0_0_12px_rgba(255,183,122,0.3)]"></div>
+</div>
+<p class="font-label text-[10px] text-on-surface-variant/60 text-right">14 OF 33 SITES UNLOCKED</p>
+</div>
+</div>
+</section>
+<!-- Achievements Bento Grid -->
+<section class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="font-headline text-2xl font-bold embossed-text">Achievement Badges</h3>
+<span class="text-tertiary font-label text-xs tracking-widest flex items-center gap-2">VIEW ALL <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<!-- Achievement Card 1 -->
+<div class="md:col-span-2 relative group overflow-hidden rounded-xl bg-surface-container border border-white/5 p-6 flex flex-col justify-between aspect-video md:aspect-auto">
+<div class="absolute inset-0 opacity-20 transition-transform duration-700 group-hover:scale-110" data-alt="Intricate Mughal architectural patterns and arches" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmGgbkLnb9xIewVZmYzTan4qdP_YG654r1FLSk9-bM8U7fupMylUu-9pFzZtZXwEUkRJOtd4tJFTBdHKjpEDbaUMSgXOj9rDZ1bDY5KXd9QPwTMoU6HR64VAtI_-CXXvGV7l1IhORu6g4zr8kRKmQ_YfTYLIVWvxgBxSAKOKf8Aa4rOvX69N9nrT2vlXRWVvLyh7xbl0QOF2PTYsN2uE4sAuf5bH_aSmoLJREEsJQwh7hGMnP4OHGnqoulvRzkZonbRh0zFatlyZg'); background-size: cover; background-position: center;"></div>
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-full bg-tertiary/10 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<h4 class="font-headline text-xl font-bold text-on-surface">Mughal Explorer</h4>
+<p class="text-on-surface-variant text-sm mt-1">Visit 5 major Mughal monuments across North India.</p>
+</div>
+<div class="relative z-10 flex gap-1 mt-6">
+<div class="h-1 flex-1 bg-tertiary"></div>
+<div class="h-1 flex-1 bg-tertiary"></div>
+<div class="h-1 flex-1 bg-tertiary"></div>
+<div class="h-1 flex-1 bg-surface-container-highest"></div>
+<div class="h-1 flex-1 bg-surface-container-highest"></div>
+</div>
+</div>
+<!-- Achievement Card 2 -->
+<div class="relative group rounded-xl bg-surface-container border border-white/5 p-6 flex flex-col items-center text-center justify-center space-y-4">
+<div class="w-20 h-20 rounded-full border-2 border-dashed border-outline-variant flex items-center justify-center p-1">
+<div class="w-full h-full rounded-full bg-secondary-container flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings: 'FILL' 1;">temple_hindu</span>
+</div>
+</div>
+<div>
+<h4 class="font-headline text-lg font-bold">Temple Trailblazer</h4>
+<p class="text-[10px] uppercase font-label tracking-widest text-tertiary mt-1">Unlocked 12.04.23</p>
+</div>
+</div>
+<!-- Achievement Card 3 -->
+<div class="relative group rounded-xl bg-surface-container border border-white/5 p-6 flex flex-col items-center text-center justify-center space-y-4">
+<div class="w-20 h-20 rounded-full border-2 border-dashed border-outline-variant flex items-center justify-center p-1">
+<div class="w-full h-full rounded-full bg-primary-container/40 flex items-center justify-center grayscale opacity-50">
+<span class="material-symbols-outlined text-on-primary-container text-3xl">fort</span>
+</div>
+</div>
+<div>
+<h4 class="font-headline text-lg font-bold opacity-50 text-on-surface-variant">Fort Sentinel</h4>
+<p class="text-[10px] uppercase font-label tracking-widest text-on-surface-variant/40 mt-1">2/10 Sites Visited</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Digital Stamps Journal Grid -->
+<section class="space-y-8">
+<div class="flex items-center justify-between border-b border-white/10 pb-4">
+<h3 class="font-headline text-2xl font-bold embossed-text">Site Stamps Journal</h3>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+<span class="font-label text-xs font-bold uppercase tracking-wider">Region</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+<!-- Stamp 1: Taj Mahal -->
+<div class="flex flex-col items-center space-y-3 group">
+<div class="aspect-square w-full rounded-xl bg-surface-container-low border border-white/5 relative flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:bg-surface-container-high">
+<div class="absolute inset-0 opacity-5 pointer-events-none stamp-texture bg-on-surface"></div>
+<div class="relative p-6 border-4 border-tertiary/20 rounded-full flex items-center justify-center transform -rotate-12 transition-transform group-hover:rotate-0">
+<span class="material-symbols-outlined text-tertiary text-6xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<div class="absolute -bottom-2 bg-background px-2 text-[8px] font-label font-bold text-tertiary tracking-tighter uppercase">AGRA · 2024</div>
+</div>
+</div>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">Taj Mahal</span>
+</div>
+<!-- Stamp 2: Hampi -->
+<div class="flex flex-col items-center space-y-3 group">
+<div class="aspect-square w-full rounded-xl bg-surface-container-low border border-white/5 relative flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:bg-surface-container-high">
+<div class="absolute inset-0 opacity-5 pointer-events-none stamp-texture bg-on-surface"></div>
+<div class="relative p-6 border-4 border-secondary/20 rounded-full flex items-center justify-center transform rotate-6 transition-transform group-hover:rotate-0">
+<span class="material-symbols-outlined text-secondary text-6xl" style="font-variation-settings: 'FILL' 1;">foundation</span>
+<div class="absolute -bottom-2 bg-background px-2 text-[8px] font-label font-bold text-secondary tracking-tighter uppercase">HAMPI · 2023</div>
+</div>
+</div>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">Virupaksha Temple</span>
+</div>
+<!-- Stamp 3: Ajanta -->
+<div class="flex flex-col items-center space-y-3 group">
+<div class="aspect-square w-full rounded-xl bg-surface-container-low border border-white/5 relative flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:bg-surface-container-high">
+<div class="absolute inset-0 opacity-5 pointer-events-none stamp-texture bg-on-surface"></div>
+<div class="relative p-6 border-4 border-primary/20 rounded-full flex items-center justify-center transform -rotate-3 transition-transform group-hover:rotate-0">
+<span class="material-symbols-outlined text-primary text-6xl" style="font-variation-settings: 'FILL' 1;">landscape</span>
+<div class="absolute -bottom-2 bg-background px-2 text-[8px] font-label font-bold text-primary tracking-tighter uppercase">AJANTA · 2023</div>
+</div>
+</div>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">Ajanta Caves</span>
+</div>
+<!-- Stamp 4: Konark -->
+<div class="flex flex-col items-center space-y-3 group">
+<div class="aspect-square w-full rounded-xl bg-surface-container-low border border-white/5 relative flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:bg-surface-container-high">
+<div class="absolute inset-0 opacity-5 pointer-events-none stamp-texture bg-on-surface"></div>
+<div class="relative p-6 border-4 border-on-tertiary-container/20 rounded-full flex items-center justify-center transform rotate-12 transition-transform group-hover:rotate-0">
+<span class="material-symbols-outlined text-on-tertiary-container text-6xl" style="font-variation-settings: 'FILL' 1;">sunny</span>
+<div class="absolute -bottom-2 bg-background px-2 text-[8px] font-label font-bold text-on-tertiary-container tracking-tighter uppercase">PURI · 2022</div>
+</div>
+</div>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">Sun Temple</span>
+</div>
+<!-- Stamp 5: Locked -->
+<div class="flex flex-col items-center space-y-3 opacity-30 grayscale cursor-not-allowed">
+<div class="aspect-square w-full rounded-xl bg-surface-container-low border border-dashed border-outline-variant relative flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-4xl">lock</span>
+</div>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">Locked Site</span>
+</div>
+<!-- More stamps... -->
+<div class="flex flex-col items-center space-y-3 opacity-30 grayscale cursor-not-allowed">
+<div class="aspect-square w-full rounded-xl bg-surface-container-low border border-dashed border-outline-variant relative flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-4xl">lock</span>
+</div>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">Locked Site</span>
+</div>
+<div class="flex flex-col items-center space-y-3 opacity-30 grayscale cursor-not-allowed">
+<div class="aspect-square w-full rounded-xl bg-surface-container-low border border-dashed border-outline-variant relative flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-4xl">lock</span>
+</div>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">Locked Site</span>
+</div>
+<div class="flex flex-col items-center space-y-3 opacity-30 grayscale cursor-not-allowed">
+<div class="aspect-square w-full rounded-xl bg-surface-container-low border border-dashed border-outline-variant relative flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-4xl">lock</span>
+</div>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">Locked Site</span>
+</div>
+</div>
+</section>
+<!-- Digital Log Entry - Editorial Style -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="md:col-span-2 glass-card rounded-xl p-8 border border-white/10 space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">edit_note</span>
+</div>
+<div>
+<h4 class="font-headline text-xl font-bold">Latest Entry: Khajuraho</h4>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">March 14, 2024 · Madhya Pradesh</p>
+</div>
+</div>
+<p class="font-body text-on-surface-variant leading-relaxed">
+                    Arrived at the Western Group of Temples at dawn. The Kandariya Mahadeva temple is a masterpiece of precision. The way the light catches the sandstone relief figures is breathtaking. Successfully scanned the 'Sacred Geometry' QR to unlock this passport page.
+                </p>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-highest rounded text-[10px] font-bold uppercase text-on-surface-variant tracking-wider">#UNESCO</span>
+<span class="px-3 py-1 bg-surface-container-highest rounded text-[10px] font-bold uppercase text-on-surface-variant tracking-wider">#ARCHAEOLOGY</span>
+</div>
+</div>
+<div class="bg-primary-container/20 border border-primary-container/30 rounded-xl p-8 flex flex-col justify-center items-center text-center space-y-4">
+<span class="material-symbols-outlined text-tertiary text-5xl">qr_code_scanner</span>
+<h4 class="font-headline text-xl font-bold">New Exploration</h4>
+<p class="text-sm text-on-surface-variant">Found a heritage plaque? Scan the code at the site to stamp your passport.</p>
+<button class="w-full py-3 bg-gradient-to-br from-primary to-primary-container rounded-lg font-label font-bold text-xs uppercase tracking-widest text-on-primary shadow-lg active:scale-95 transition-transform">
+                    SCAN SITE QR
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#131319]/60 backdrop-blur-2xl dark:bg-[#131319]/60 border-t border-white/10 shadow-[0_-4px_24px_rgba(0,0,0,0.4)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-[#c7c5d4] px-4 py-2 hover:text-[#ffb77a] active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] font-bold mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#c7c5d4] px-4 py-2 hover:text-[#ffb77a] active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] font-bold mt-1">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#ffb77a] bg-[#802918]/20 rounded-xl px-4 py-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] font-bold mt-1">Passport</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#c7c5d4] px-4 py-2 hover:text-[#ffb77a] active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.05em] font-bold mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

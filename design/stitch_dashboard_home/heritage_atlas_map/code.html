@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed-dim": "#ffb4a5",
+              "primary-fixed": "#e1e0ff",
+              "on-secondary-fixed-variant": "#802918",
+              "on-error": "#690005",
+              "on-secondary-fixed": "#3e0500",
+              "surface-container": "#1f1f25",
+              "on-background": "#e4e1ea",
+              "surface-bright": "#39383f",
+              "on-surface": "#e4e1ea",
+              "outline-variant": "#464652",
+              "on-primary-fixed": "#04006d",
+              "tertiary-fixed": "#ffdcc2",
+              "on-secondary": "#611205",
+              "surface-dim": "#131319",
+              "on-tertiary-fixed-variant": "#6d3a00",
+              "secondary": "#ffb4a5",
+              "secondary-container": "#802918",
+              "primary-container": "#2e3192",
+              "primary": "#c0c1ff",
+              "secondary-fixed": "#ffdad3",
+              "surface-container-low": "#1b1b21",
+              "inverse-primary": "#4f54b4",
+              "on-primary-fixed-variant": "#373a9b",
+              "on-tertiary-fixed": "#2e1500",
+              "inverse-surface": "#e4e1ea",
+              "on-tertiary-container": "#f6922c",
+              "on-error-container": "#ffdad6",
+              "tertiary": "#ffb77a",
+              "tertiary-fixed-dim": "#ffb77a",
+              "surface": "#131319",
+              "on-secondary-container": "#ff9a85",
+              "on-primary-container": "#9da1ff",
+              "background": "#131319",
+              "surface-container-high": "#2a2930",
+              "surface-container-highest": "#34343b",
+              "surface-tint": "#c0c1ff",
+              "on-primary": "#1e2084",
+              "on-tertiary": "#4c2700",
+              "surface-container-lowest": "#0e0e14",
+              "error": "#ffb4ab",
+              "tertiary-container": "#613300",
+              "on-surface-variant": "#c7c5d4",
+              "inverse-on-surface": "#303036",
+              "error-container": "#93000a",
+              "surface-variant": "#34343b",
+              "outline": "#908f9d",
+              "primary-fixed-dim": "#c0c1ff"
+            },
+            fontFamily: {
+              "notoSerif": ["Noto Serif"],
+              "manrope": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .map-gradient-overlay {
+            background: radial-gradient(circle at center, transparent 0%, rgba(19, 19, 25, 0.4) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-manrope overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 w-full bg-[#131319]/60 backdrop-blur-xl border-none bg-gradient-to-b from-[#131319] to-transparent">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#ffb77a]">menu</span>
+<h1 class="font-notoSerif uppercase tracking-wider text-lg font-notoSerif italic text-[#ffb77a] drop-shadow-[0_1px_rgba(255,255,255,0.2)]">BharatHeritage</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="User profile avatar circle portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9OSn6khtGz3kjdG4NacTFWn0_mMJTxOLgkvzn1z46LZ-g9hdRCRJDnbSJQczi8NnOAKgbDD3nflCRE4f95vwloSZvgfiaA4ldsg7uFLGgiGPGd3TzLW7emdyldi0DzB30HD_giWcsV50ONof5-GDRUHSgYEVQlwoLa0rpKTtwCy89qmy1CRedPGL-hoeX8Ndml7o3rcK4R_ewkunhF1GDDyC20ZU471dN9o1nhGZNA0DSLIz0xOxSGizIJdnFaENTPzSsX1Z49mI"/>
+</div>
+</div>
+</header>
+<!-- Main Map Canvas -->
+<main class="relative w-full h-screen overflow-hidden">
+<!-- The Map Background -->
+<div class="absolute inset-0 bg-[#0e0e14]">
+<img class="w-full h-screen object-cover opacity-40 mix-blend-luminosity" data-alt="Dark stylized satellite map of India with heritage markers" data-location="Agra, India" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ5wbHnZDW9PTap_GbgTE1sa3WQ1Ibc29C3HXkUIPTKox6J6pJGVUlUT80GerClh7K8sjli-nJcx3U4_gSyn9sizXLKqZ_eg_wDlbA-JYGAZ5FaKGiHBd5mZi6fl1J6d490l6bDe4ChTQAVnZcquIO7-CeCL4N8ZdsN_tnizx47DWtLfePt9mcjwjMtYXhy5wTnh53QxeFDi-oho_DrDkSRaaJDeQlr8aRh99isSF795u0luQwodJC2HhJyGf17u9pP02FvTuzlz8"/>
+<div class="absolute inset-0 map-gradient-overlay pointer-events-none"></div>
+</div>
+<!-- Search Bar Overlay -->
+<div class="absolute top-24 left-1/2 -translate-x-1/2 w-[calc(100%-3rem)] max-w-md z-40">
+<div class="flex items-center bg-surface-container-lowest/80 backdrop-blur-md px-4 py-3 rounded-xl border border-outline-variant/30 shadow-2xl">
+<span class="material-symbols-outlined text-on-surface-variant mr-3">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-manrope text-on-surface w-full placeholder:text-on-surface-variant/50" placeholder="Heritage Search" type="text"/>
+<span class="material-symbols-outlined text-tertiary">tune</span>
+</div>
+</div>
+<!-- Heritage Markers (Saffron UI) -->
+<div class="absolute top-[45%] left-[55%] -translate-x-1/2 -translate-y-1/2">
+<div class="relative group cursor-pointer">
+<!-- Glowing Pulse -->
+<div class="absolute -inset-4 bg-tertiary/20 rounded-full blur-xl"></div>
+<!-- Marker Icon -->
+<div class="relative bg-tertiary text-on-tertiary w-10 h-10 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(255,183,122,0.4)] border-2 border-on-tertiary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">castle</span>
+</div>
+<!-- Tooltip Label -->
+<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-surface-container-high px-3 py-1 rounded border border-outline-variant/50 whitespace-nowrap">
+<span class="text-[10px] font-manrope font-bold uppercase tracking-widest text-tertiary">Taj Mahal</span>
+</div>
+</div>
+</div>
+<!-- Decorative UI Elements (Archival Metadata) -->
+<div class="absolute top-24 left-6 hidden md:block">
+<div class="space-y-4">
+<div class="border-l border-tertiary/30 pl-4">
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant">Global Coordinates</p>
+<p class="font-manrope text-sm font-medium">27.1751° N, 78.0421° E</p>
+</div>
+<div class="border-l border-tertiary/30 pl-4">
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant">Elevation</p>
+<p class="font-manrope text-sm font-medium">171 M ASL</p>
+</div>
+</div>
+</div>
+<!-- Selected Site Mini-Preview Card -->
+<div class="absolute bottom-28 left-6 right-6 z-40 max-w-xl md:mx-auto">
+<div class="bg-surface-container-lowest/60 backdrop-blur-2xl rounded-xl border border-outline-variant/20 overflow-hidden flex shadow-2xl">
+<!-- Image Side -->
+<div class="w-1/3 min-w-[120px] h-40">
+<img alt="Taj Mahal" class="w-full h-full object-cover" data-alt="The Taj Mahal mausoleum at dawn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1rg5cTKvK4l6Ss5Y6P_lhMGaB2Wvvl3fgseWmpGvnqem9088RCZuJTqpXIbMgB0OlWLKwP4uS2Y_g6L5nkH6kbxD6Sr6J6-NDv5ZiOtZuPgH9T-rQ0U-hCzVtZsrAYtrB-mxBZ4IoMt8gXIEVJI2LpaVAPtspYFL7IVA2dDQtGTVW6DkWFfGJY1ZB1ruMGCDDVu10lLyorPcbSIIErUSNd1X-tglCPeIroVD217WSconQpnhnloddIvAhFogGp9eAUv7pEOTR8Cs"/>
+</div>
+<!-- Info Side -->
+<div class="flex-1 p-5 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-1">
+<h2 class="font-notoSerif text-xl font-bold text-on-surface tracking-tight">Taj Mahal</h2>
+<span class="bg-secondary-container/40 text-secondary-fixed-dim px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border border-secondary/20">UNESCO Site</span>
+</div>
+<p class="text-on-surface-variant text-xs line-clamp-1 mb-3">Agra, Uttar Pradesh • 17th Century Mughal Architecture</p>
+<div class="flex gap-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-sm">air</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase leading-none">AQI</span>
+<span class="text-xs font-bold text-on-surface">72 (Moderate)</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-sm">near_me</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase leading-none">Distance</span>
+<span class="text-xs font-bold text-on-surface">2.4km</span>
+</div>
+</div>
+</div>
+</div>
+<button class="mt-4 w-full bg-gradient-to-r from-primary-container to-primary/20 py-2 rounded text-xs font-bold uppercase tracking-widest text-primary flex items-center justify-center gap-2 border border-primary/20 hover:scale-[1.02] transition-transform">
+                        Explore Archive
+                        <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center pt-2 pb-6 px-4 bg-[#1b1b21]/80 backdrop-blur-2xl rounded-t-xl z-50 shadow-[0_-4px_24px_rgba(19,19,25,0.5)]">
+<div class="flex flex-col items-center justify-center text-[#c7c5d4] opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined mb-1">explore</span>
+<span class="font-manrope text-[10px] uppercase tracking-[0.05em]">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#ffb77a] bg-[#802918]/20 rounded-xl px-3 py-1 scale-110">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="font-manrope text-[10px] uppercase tracking-[0.05em]">Map</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#c7c5d4] opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined mb-1">auto_awesome</span>
+<span class="font-manrope text-[10px] uppercase tracking-[0.05em]">Passport</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#c7c5d4] opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined mb-1">history_edu</span>
+<span class="font-manrope text-[10px] uppercase tracking-[0.05em]">Timeline</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#c7c5d4] opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-manrope text-[10px] uppercase tracking-[0.05em]">Profile</span>
+</div>
+</nav>
+<!-- Floating Compass Signature -->
+<div class="fixed bottom-32 right-6 z-50 pointer-events-none opacity-40">
+<div class="w-16 h-16 border border-outline-variant/30 rounded-full flex items-center justify-center relative">
+<div class="absolute inset-0 border-t-2 border-tertiary rounded-full rotate-45"></div>
+<span class="text-[8px] font-bold text-tertiary absolute -top-4">N</span>
+<span class="text-[6px] font-manrope text-on-surface-variant">HERITAGE</span>
+</div>
+</div>
+</body></html>

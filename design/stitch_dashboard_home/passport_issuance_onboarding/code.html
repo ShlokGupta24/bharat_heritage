@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Heritage Passport - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .font-notoSerif { font-family: 'Noto Serif', serif; }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-card {
+            background: rgba(52, 52, 59, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .inner-glow {
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+        .heritage-gradient {
+            background: linear-gradient(135deg, #2e3192 0%, #1e2084 100%);
+        }
+        .seal-shadow {
+            filter: drop-shadow(0 0 15px rgba(255, 183, 122, 0.2));
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#ffb4a5",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary-fixed-variant": "#802918",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#3e0500",
+                        "surface-container": "#1f1f25",
+                        "on-background": "#e4e1ea",
+                        "surface-bright": "#39383f",
+                        "on-surface": "#e4e1ea",
+                        "outline-variant": "#464652",
+                        "on-primary-fixed": "#04006d",
+                        "tertiary-fixed": "#ffdcc2",
+                        "on-secondary": "#611205",
+                        "surface-dim": "#131319",
+                        "on-tertiary-fixed-variant": "#6d3a00",
+                        "secondary": "#ffb4a5",
+                        "secondary-container": "#802918",
+                        "primary-container": "#2e3192",
+                        "primary": "#c0c1ff",
+                        "secondary-fixed": "#ffdad3",
+                        "surface-container-low": "#1b1b21",
+                        "inverse-primary": "#4f54b4",
+                        "on-primary-fixed-variant": "#373a9b",
+                        "on-tertiary-fixed": "#2e1500",
+                        "inverse-surface": "#e4e1ea",
+                        "on-tertiary-container": "#f6922c",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffb77a",
+                        "tertiary-fixed-dim": "#ffb77a",
+                        "surface": "#131319",
+                        "on-secondary-container": "#ff9a85",
+                        "on-primary-container": "#9da1ff",
+                        "background": "#131319",
+                        "surface-container-high": "#2a2930",
+                        "surface-container-highest": "#34343b",
+                        "surface-tint": "#c0c1ff",
+                        "on-primary": "#1e2084",
+                        "on-tertiary": "#4c2700",
+                        "surface-container-lowest": "#0e0e14",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#613300",
+                        "on-surface-variant": "#c7c5d4",
+                        "inverse-on-surface": "#303036",
+                        "error-container": "#93000a",
+                        "surface-variant": "#34343b",
+                        "outline": "#908f9d",
+                        "primary-fixed-dim": "#c0c1ff"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Anchor (Manual suppression check: Onboarding page, minimal header) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-gradient-to-b from-surface to-transparent">
+<div class="font-headline italic text-tertiary drop-shadow-[0_1px_rgba(255,255,255,0.2)] uppercase tracking-wider text-lg">
+            BharatHeritage
+        </div>
+<button class="text-on-surface-variant font-label text-xs tracking-widest uppercase">Skip</button>
+</header>
+<main class="flex-grow flex flex-col items-center pt-24 pb-32 px-6 max-w-lg mx-auto w-full">
+<!-- Hero Section with Royal Seal -->
+<div class="relative w-full aspect-square max-w-[280px] mb-12 flex items-center justify-center">
+<!-- Decorative Glow -->
+<div class="absolute inset-0 bg-tertiary/10 rounded-full blur-[60px]"></div>
+<!-- Royal Seal Illustration -->
+<div class="relative z-10 w-full h-full p-4 seal-shadow">
+<img alt="Traditional Indian Royal Seal" class="w-full h-full object-contain mix-blend-screen opacity-90" data-alt="Intricate golden traditional Indian royal seal emblem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe3nd7vswtfFLwAdgXD_QBlaq1pT6EIM1prio0uL6gZO4gvM9zXI3B0NdeBA7HBUloB3BIw7QBgIghNyQN2SmJBjGXiow4vbjFqWHs6Qga9RbBR6lLidlMPrVUK_NRpWc5AeUvD-cU6_3-J7RUQEhiSaReLPDi-uw5-vzfr1fVp-T4JUAHbvtRt0_gazKJ2D7FoPjcbQpQ7puiI3r7Y2QQtRUd1NJlZNTCQIBqyd3qx0y_yMqxz15uIS1oJ7rdj2HncHCuSSNn9Ak"/>
+</div>
+<!-- Archeology/Catalog labels (Editorial Museum aesthetic) -->
+<div class="absolute -right-4 top-1/2 -translate-y-1/2 flex flex-col gap-1 items-start">
+<span class="font-label text-[10px] text-tertiary tracking-[0.2em] border-l border-tertiary/40 pl-2">ID: HER-882</span>
+<span class="font-label text-[10px] text-on-surface-variant tracking-[0.2em] border-l border-outline-variant pl-2">TYPE: SOVEREIGN</span>
+</div>
+</div>
+<!-- Headline & Welcome Text -->
+<div class="text-center mb-16">
+<h1 class="font-headline text-3xl md:text-4xl text-on-surface font-bold tracking-tight mb-4">
+                Welcome to the Digital <br/>
+<span class="text-tertiary italic">Heritage Passport</span>
+</h1>
+<p class="text-on-surface-variant font-body text-sm leading-relaxed max-w-[85%] mx-auto">
+                Begin your journey through time. Select your cultural affinities to curate your personal archive of India's majesty.
+            </p>
+</div>
+<!-- Interest Selection (Asymmetric Bento-ish Grid) -->
+<div class="w-full grid grid-cols-2 gap-4 mb-16">
+<!-- Architecture -->
+<div class="glass-card rounded-xl p-5 flex flex-col justify-between aspect-[4/5] border border-white/5 group active:scale-95 transition-all">
+<div class="w-10 h-10 rounded-full bg-primary-container/40 flex items-center justify-center text-primary mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<h3 class="font-headline text-lg leading-tight mb-1">Architecture</h3>
+<p class="font-label text-[10px] text-on-surface-variant tracking-wider uppercase">Forts &amp; Temples</p>
+</div>
+</div>
+<!-- Spiritual -->
+<div class="glass-card rounded-xl p-5 flex flex-col justify-between aspect-[4/5] border border-tertiary/30 bg-tertiary-container/10 active:scale-95 transition-all">
+<div class="w-10 h-10 rounded-full bg-tertiary/20 flex items-center justify-center text-tertiary mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">self_improvement</span>
+</div>
+<div>
+<h3 class="font-headline text-lg leading-tight mb-1 text-tertiary">Spiritual</h3>
+<p class="font-label text-[10px] text-tertiary/70 tracking-wider uppercase">Mystic Traditions</p>
+</div>
+<!-- Selection Indicator -->
+<div class="absolute top-4 right-4 text-tertiary">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+</div>
+</div>
+<!-- Cuisine -->
+<div class="glass-card rounded-xl p-5 flex flex-col justify-between aspect-[4/5] border border-white/5 active:scale-95 transition-all">
+<div class="w-10 h-10 rounded-full bg-secondary-container/40 flex items-center justify-center text-secondary mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+<div>
+<h3 class="font-headline text-lg leading-tight mb-1">Cuisine</h3>
+<p class="font-label text-[10px] text-on-surface-variant tracking-wider uppercase">Royal Flavors</p>
+</div>
+</div>
+<!-- Nature -->
+<div class="glass-card rounded-xl p-5 flex flex-col justify-between aspect-[4/5] border border-white/5 active:scale-95 transition-all">
+<div class="w-10 h-10 rounded-full bg-primary-container/40 flex items-center justify-center text-primary mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forest</span>
+</div>
+<div>
+<h3 class="font-headline text-lg leading-tight mb-1">Nature</h3>
+<p class="font-label text-[10px] text-on-surface-variant tracking-wider uppercase">Sacred Groves</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Actions Area (Floating UI) -->
+<div class="fixed bottom-0 left-0 w-full px-6 pb-12 pt-8 bg-gradient-to-t from-surface via-surface/95 to-transparent z-50">
+<div class="max-w-lg mx-auto">
+<button class="w-full h-16 heritage-gradient inner-glow rounded-lg flex items-center justify-center gap-3 active:scale-[0.98] transition-transform shadow-2xl relative overflow-hidden group">
+<!-- Button Highlight / Skeuomorphic Sheen -->
+<div class="absolute top-0 left-0 w-full h-[1px] bg-white/20"></div>
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-label text-sm font-bold tracking-[0.15em] uppercase text-white">Issue Passport</span>
+<!-- Particle effect feel -->
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-white/5 blur-xl rounded-full"></div>
+</button>
+<p class="mt-4 text-center text-[10px] text-on-surface-variant/60 font-label tracking-widest uppercase">
+                By issuing, you agree to the archival protocols.
+            </p>
+</div>
+</div>
+<!-- Decorative Screen Texture (Archives feel) -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay" data-alt="Subtle grid pattern overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBIJ6RLaLNGePHysG_QbbhD-hmid9Xn6jy6BXZVpfF2mjkUFOYmNWh7bO4BcAUQlCBPa3f5EwZ-ef4pZweaJ9Iq_6TrBD_0OPnPHJfR439Lni_qlg48QVslPAbRKhi3nrjj03weGfJGVCLXSxsn7eE7W6Wl2DN5M0xtflSGAiZcHQOahJ0gkDy1knccoVZjEB6hjDKPMtGk_fNt6nHTnvEnoJZtU4JfP3-bHffc-jkzoI8Omicbmj9Nl0D60VGAGlxj61B97NMdT3Q')">
+</div>
+</body></html>

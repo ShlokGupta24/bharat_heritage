@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BharatHeritage - Monument Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;900&amp;family=Manrope:wght@300;400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-container": "#2e3192",
+              "inverse-primary": "#4f54b4",
+              "secondary-fixed": "#ffdad3",
+              "surface-variant": "#34343b",
+              "on-primary-fixed-variant": "#373a9b",
+              "surface-bright": "#39383f",
+              "on-tertiary": "#4c2700",
+              "on-primary-container": "#9da1ff",
+              "error-container": "#93000a",
+              "on-secondary-fixed": "#3e0500",
+              "primary-fixed": "#e1e0ff",
+              "on-background": "#e4e1ea",
+              "on-tertiary-fixed-variant": "#6d3a00",
+              "on-tertiary-fixed": "#2e1500",
+              "surface-container-high": "#2a2930",
+              "on-error": "#690005",
+              "secondary-container": "#802918",
+              "inverse-surface": "#e4e1ea",
+              "surface-container": "#1f1f25",
+              "background": "#131319",
+              "on-tertiary-container": "#f6922c",
+              "surface-container-highest": "#34343b",
+              "surface-container-low": "#1b1b21",
+              "primary": "#c0c1ff",
+              "surface-tint": "#c0c1ff",
+              "secondary-fixed-dim": "#ffb4a5",
+              "on-secondary-fixed-variant": "#802918",
+              "on-secondary-container": "#ff9a85",
+              "surface-dim": "#131319",
+              "on-error-container": "#ffdad6",
+              "on-primary": "#1e2084",
+              "error": "#ffb4ab",
+              "outline-variant": "#464652",
+              "on-secondary": "#611205",
+              "on-surface-variant": "#c7c5d4",
+              "tertiary-container": "#613300",
+              "primary-fixed-dim": "#c0c1ff",
+              "tertiary-fixed-dim": "#ffb77a",
+              "secondary": "#ffb4a5",
+              "inverse-on-surface": "#303036",
+              "surface": "#131319",
+              "outline": "#908f9d",
+              "tertiary": "#ffb77a",
+              "tertiary-fixed": "#ffdcc2",
+              "surface-container-lowest": "#0e0e14",
+              "on-primary-fixed": "#04006d",
+              "on-surface": "#e4e1ea"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(52, 52, 59, 0.4);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .skeuomorphic-inner-glow {
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      }
+      .asymmetric-clip {
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body selection:bg-tertiary selection:text-on-tertiary">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#131319]/60 backdrop-blur-xl">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-[#2a2930] transition-colors text-[#c7c5d4]">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<span class="font-['Noto_Serif'] text-2xl font-black text-[#2e3192] dark:text-[#c7c5d4] drop-shadow-[0_1px_rgba(255,255,255,0.2)]">BharatHeritage</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-[#2a2930] transition-colors text-[#c7c5d4]">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-[#2a2930] transition-colors text-[#ffb77a]">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+</header>
+<main class="relative min-h-screen pb-32">
+<!-- Hero Section -->
+<section class="relative h-[618px] w-full overflow-hidden asymmetric-clip">
+<img alt="Taj Mahal Monument" class="w-full h-full object-cover" data-alt="High resolution shot of the Taj Mahal at sunrise" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUy8nr308kD5zPNzeaMcXW0924NoUY94YUf8FJOtGdrsk5SBiBUOFPHsfLyYWWkmFmG3JOwpSnh6hiWVDvklE_z6WIFTVndKZkKktTyE97yYVv9WAs8WpQHrUcfqnCkTOklo-dF3NuTJEtOYz1M_wIkfwVxjwtpm0_qnGL5_l91028Hia5T551bQ-XPJHPpuMyZkAGhqyVvePn4_suQTaMT4vnKK9uYoPo09jVPgt1OSHxORW_ZohKC8ALtw7Hq1DJ9hvRA_RZOiE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<!-- Hero Title Overlay -->
+<div class="absolute bottom-16 left-8 right-8 z-10">
+<p class="font-label text-xs uppercase tracking-[0.3em] text-tertiary mb-2">UNESCO World Heritage Site</p>
+<h1 class="font-headline text-5xl md:text-7xl font-black text-on-surface leading-none drop-shadow-2xl">Taj Mahal</h1>
+<div class="flex items-center gap-4 mt-4">
+<div class="flex items-center gap-1 bg-surface-container/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/5">
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="font-label text-[10px] tracking-widest uppercase">Agra, India</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/5">
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<span class="font-label text-[10px] tracking-widest uppercase">1632 AD</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Canvas -->
+<div class="px-6 -mt-12 relative z-20 space-y-12 max-w-5xl mx-auto">
+<!-- Historical Context Card -->
+<section class="glass-card p-8 rounded-xl border border-white/10 shadow-2xl">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="md:col-span-2">
+<h2 class="font-headline text-2xl mb-4 text-on-surface border-b border-white/5 pb-2">The Crown of Palaces</h2>
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                            Commissioned by the Mughal emperor Shah Jahan to house the tomb of his favourite wife, Mumtaz Mahal. The ivory-white marble mausoleum on the south bank of the Yamuna river is an architectural masterpiece of Mughal design, blending Persian, Islamic, and Indian influences.
+                        </p>
+</div>
+<div class="space-y-4">
+<div class="p-4 bg-surface-container-high rounded-lg border-l-4 border-tertiary">
+<p class="font-label text-[10px] uppercase text-on-surface-variant tracking-tighter mb-1">Architectural Style</p>
+<p class="font-bold text-on-surface">Indo-Islamic Fusion</p>
+</div>
+<div class="p-4 bg-surface-container-high rounded-lg border-l-4 border-secondary">
+<p class="font-label text-[10px] uppercase text-on-surface-variant tracking-tighter mb-1">Primary Material</p>
+<p class="font-bold text-on-surface">Makrana Marble</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Live Intelligence Section -->
+<section class="space-y-6">
+<div class="flex items-end justify-between">
+<div>
+<h3 class="font-headline text-3xl font-bold text-on-surface">Live Intelligence</h3>
+<p class="font-label text-sm text-on-surface-variant tracking-wider">Real-time Environmental Monitoring</p>
+</div>
+<div class="flex items-center gap-2 text-error animate-pulse">
+<span class="material-symbols-outlined text-sm">sensors</span>
+<span class="font-label text-[10px] uppercase font-bold tracking-widest">Live Data</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Pollution Alert Card -->
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden group">
+<div class="flex justify-between items-start mb-8">
+<div>
+<p class="font-label text-[10px] uppercase text-on-surface-variant tracking-widest mb-1">Air Quality Index (AQI)</p>
+<h4 class="text-4xl font-black text-secondary">142</h4>
+<span class="text-xs text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded">MODERATE</span>
+</div>
+<span class="material-symbols-outlined text-4xl text-secondary/20 group-hover:scale-110 transition-transform duration-500">air</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-tighter">
+<span>Particulate Matter (PM2.5)</span>
+<span>High</span>
+</div>
+<div class="w-full bg-surface-variant h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[65%]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant italic">Protection recommended for prolonged exposure.</p>
+</div>
+</div>
+<!-- Visitor Statistics Card -->
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden group">
+<div class="flex justify-between items-start mb-8">
+<div>
+<p class="font-label text-[10px] uppercase text-on-surface-variant tracking-widest mb-1">Current Density</p>
+<h4 class="text-4xl font-black text-tertiary">2,840</h4>
+<span class="text-xs text-on-tertiary-container bg-tertiary-container px-2 py-0.5 rounded">PEAK HOURS</span>
+</div>
+<span class="material-symbols-outlined text-4xl text-tertiary/20 group-hover:scale-110 transition-transform duration-500">groups</span>
+</div>
+<!-- Simple Visualization -->
+<div class="flex items-end gap-1 h-12">
+<div class="flex-1 bg-surface-variant/40 h-1/4 rounded-t-sm"></div>
+<div class="flex-1 bg-surface-variant/40 h-2/4 rounded-t-sm"></div>
+<div class="flex-1 bg-surface-variant/40 h-3/4 rounded-t-sm"></div>
+<div class="flex-1 bg-tertiary h-full rounded-t-sm"></div>
+<div class="flex-1 bg-surface-variant/40 h-4/5 rounded-t-sm"></div>
+<div class="flex-1 bg-surface-variant/40 h-2/4 rounded-t-sm"></div>
+<div class="flex-1 bg-surface-variant/40 h-1/3 rounded-t-sm"></div>
+</div>
+<p class="mt-2 text-[10px] font-bold text-center uppercase tracking-widest text-on-surface-variant">Arrival Trend (Last 6 Hours)</p>
+</div>
+</div>
+</section>
+<!-- Discovery List (Gallery/Nearby) -->
+<section>
+<h3 class="font-headline text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">photo_library</span>
+                    Archival Visuals
+                </h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container-high group">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Black and white archival photo of monument gate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4KpkAWRqMlmE0Pd8i6T3JGM_3Nstr4C_e7d9Prk3CSbWnwUDioumbrp7XJogxHbHtynNtCj_bMMP69pRcKGUpjAWulSi5XrRXSfsAmSEXm47fIVJVZ_tCMIiOjnKQLZeZIrhgRNZ_P6XrP8uypRZoBwv694RkjZQvNBKC-Yltz8Kk8dOwquLBjWeocN9Ai0lSAqfdHzG2hIjOrkxfIjz4QxUtwSKtzGOcaLPFknKeQtWyeK4qGyjWPnqSCaaNQeDSqvQUdP56Me0"/>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container-high group">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Macro detail of marble inlay work" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYkAP5Th2MQYeyJ-APQIPgSRVEyaBeX7rPN6w05LoJ8G8fAOTOFWpfLeHBV8zuAHHJ3gKQrcxQAiYigbwd7ieVsApqessQsE3phVAHy75wC5V5QhqstMSES97mpNKfk2_qh2a4RFs0MwzcoyHb2AiTWOonBLAolWcBnU033BXsFR3KAo2GKhxhlmqDe7T6FtcPuPNybd0fNFXCzEAlwf1dPMgk1fPy43W2zx0fARuQkjdMuvgcYg5-3nIbosJnSCobSxtDtRUE_8o"/>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container-high group">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="The reflecting pool of the Taj Mahal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMSwXrM3KXsPmONxc7j5qIgNk81Tf67rnv0DRmbPdi4dqhfG-t-8HdsXKrR-5x1kRHA5N5RckwzYczFF-F39_PKDSzEWF9gX4Jx_5D45seCT7n8TXGAiD73lL9c8LkQKL44zjeFNxkdt7a7K6rIYaermTy-dP1IzY2zWDrTNSZD8RCDvWhHPbgLbiBER0hCT_DpTzOcghvSlt_1ygwc8NLgxBH5a90y1POfClT8qLNUw8e5ARstUDMeoYFdLMP9kRwFUkIfdhKlHA"/>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container-high group flex items-center justify-center border-2 border-dashed border-outline-variant">
+<div class="text-center p-4">
+<p class="font-label text-[10px] uppercase font-bold text-tertiary">+12 More</p>
+<p class="text-[8px] text-on-surface-variant mt-1">VIRTUAL TOUR</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Check-in Action Footer -->
+<div class="fixed bottom-0 left-0 w-full p-6 z-50 pointer-events-none">
+<div class="max-w-md mx-auto pointer-events-auto">
+<button class="w-full group relative h-20 bg-gradient-to-br from-primary to-primary-container rounded-xl shadow-[0_8px_32px_rgba(46,49,146,0.6)] skeuomorphic-inner-glow transition-all active:scale-95 flex items-center justify-between px-8 overflow-hidden">
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+<div class="flex flex-col items-start">
+<span class="font-label text-[10px] text-on-primary-container uppercase tracking-widest font-black">Digital Passport</span>
+<span class="font-headline text-xl text-on-primary font-bold">Check-in Now</span>
+</div>
+<div class="relative w-12 h-12 bg-on-primary rounded-full flex items-center justify-center shadow-lg group-active:translate-y-1 transition-transform">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">approval</span>
+</div>
+<!-- Animated Stamp Texture Effect (CSS visual) -->
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-125 transition-transform duration-1000">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">token</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Background Decoration -->
+<div class="fixed top-0 right-0 w-full h-full pointer-events-none z-0 opacity-20">
+<div class="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-primary-container rounded-full blur-[150px]"></div>
+<div class="absolute bottom-[10%] left-[-10%] w-[400px] h-[400px] bg-secondary-container rounded-full blur-[120px]"></div>
+</div>
+</body></html>

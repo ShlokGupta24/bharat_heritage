@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Explorer Profile | BharatHeritage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .font-notoSerif { font-family: 'Noto Serif', serif; }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+        
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(52, 52, 59, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        /* Custom scrollbar for clean UI */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #131319; }
+        ::-webkit-scrollbar-thumb { background: #2e3192; border-radius: 10px; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#ffb4a5",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary-fixed-variant": "#802918",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#3e0500",
+                        "surface-container": "#1f1f25",
+                        "on-background": "#e4e1ea",
+                        "surface-bright": "#39383f",
+                        "on-surface": "#e4e1ea",
+                        "outline-variant": "#464652",
+                        "on-primary-fixed": "#04006d",
+                        "tertiary-fixed": "#ffdcc2",
+                        "on-secondary": "#611205",
+                        "surface-dim": "#131319",
+                        "on-tertiary-fixed-variant": "#6d3a00",
+                        "secondary": "#ffb4a5",
+                        "secondary-container": "#802918",
+                        "primary-container": "#2e3192",
+                        "primary": "#c0c1ff",
+                        "secondary-fixed": "#ffdad3",
+                        "surface-container-low": "#1b1b21",
+                        "inverse-primary": "#4f54b4",
+                        "on-primary-fixed-variant": "#373a9b",
+                        "on-tertiary-fixed": "#2e1500",
+                        "inverse-surface": "#e4e1ea",
+                        "on-tertiary-container": "#f6922c",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffb77a",
+                        "tertiary-fixed-dim": "#ffb77a",
+                        "surface": "#131319",
+                        "on-secondary-container": "#ff9a85",
+                        "on-primary-container": "#9da1ff",
+                        "background": "#131319",
+                        "surface-container-high": "#2a2930",
+                        "surface-container-highest": "#34343b",
+                        "surface-tint": "#c0c1ff",
+                        "on-primary": "#1e2084",
+                        "on-tertiary": "#4c2700",
+                        "surface-container-lowest": "#0e0e14",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#613300",
+                        "on-surface-variant": "#c7c5d4",
+                        "inverse-on-surface": "#303036",
+                        "error-container": "#93000a",
+                        "surface-variant": "#34343b",
+                        "outline": "#908f9d",
+                        "primary-fixed-dim": "#c0c1ff"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-tertiary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 w-full bg-[#131319]/60 backdrop-blur-xl border-none bg-gradient-to-b from-[#131319] to-transparent">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#ffb77a] cursor-pointer" data-icon="menu">menu</span>
+<h1 class="font-notoSerif italic text-[#ffb77a] drop-shadow-[0_1px_rgba(255,255,255,0.2)] uppercase tracking-wider text-lg">BharatHeritage</h1>
+</div>
+<div class="h-10 w-10 rounded-full border border-tertiary/30 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCumDzcKjIEETM36di_uZBbdKXV6_6zApMhFN_Td7zEcA7jzeX0DwDAUiU8Z1CEXf15VVklN-YeiI5p-xEQGOyziMHPXK-MiSwKXWeyus7fAk0_ssr6x69cpR9e_Crgp5x3gu2Ly90DkMxTPZn8COuuPx2FAuzmXoqBv7U21rL6qKJqIqveFcBpWVcD-jWNTxwBdAPVqHgOSBn0Wf3cBA8ka99S67hxGM4ldLrpc0cYHlMujrTEMYoV8jVu-J7vHcBqkZDzAKE9vq0"/>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-5xl mx-auto space-y-12">
+<!-- Profile Hero Section -->
+<section class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+<div class="relative">
+<!-- Heritage Border Decor -->
+<div class="absolute -inset-4 border-2 border-tertiary/20 rounded-xl rotate-3"></div>
+<div class="absolute -inset-4 border border-secondary/20 rounded-xl -rotate-6"></div>
+<div class="relative w-40 h-40 md:w-48 md:h-48 rounded-xl overflow-hidden shadow-2xl z-10">
+<img class="w-full h-full object-cover" data-alt="Explorer profile photo with architectural depth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Vv6b0c77D9JjvsgYCPEGVkFOMlzQhdoeFFIP8u4r-XrMTfp_1MmNtOL7HvWWCIOrwB9o-1kiI4eZwMqd5X0xDe2fP8PhxMeCoaup8QXOB_6JYFG5Zsw7g9JwQ9RjHe5F4U-tNI8TOKdf6n1i7bBDnh6rkydR67lH6KZFpZUVoySB2YlwupKhU7X9jVoYLW14p6OfnwhYp_b_RPzsTpkQ91FoVK_htvefBONT1zU9phF1NNnXm--wArcvwrcvUW6TK154WgH-vT0"/>
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+<span class="text-[10px] font-label tracking-widest text-tertiary block">VERIFIED EXPLORER</span>
+</div>
+</div>
+<!-- Archivist Rank Badge -->
+<div class="absolute -bottom-4 -right-4 z-20 bg-secondary-container text-secondary px-4 py-2 rounded-lg shadow-xl border border-secondary/30 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+<span class="font-label text-xs font-bold tracking-tighter">ARCHIVIST RANK</span>
+</div>
+</div>
+<div class="flex-1 text-center md:text-left space-y-2">
+<h2 class="font-headline text-4xl md:text-5xl text-on-surface font-bold tracking-tight">Vikram Singh</h2>
+<p class="text-on-surface-variant font-body text-lg max-w-md">Preserving the echoes of the past through digital cartography and high-altitude site documentation.</p>
+<div class="flex flex-wrap justify-center md:justify-start gap-3 pt-4">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[10px] font-label text-tertiary border border-tertiary/20">Himalayan Specialist</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[10px] font-label text-on-surface-variant border border-outline-variant/30">Top 5% Contributor</span>
+</div>
+</div>
+</section>
+<!-- Travel Stats Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="md:col-span-2 bg-primary-container/20 border border-primary/10 p-8 rounded-xl flex flex-col justify-between group overflow-hidden relative">
+<div class="absolute -right-8 -top-8 text-primary/5">
+<span class="material-symbols-outlined text-[160px]">castle</span>
+</div>
+<h3 class="font-label text-xs tracking-widest text-primary uppercase">Total Sites Visited</h3>
+<div class="mt-8 flex items-baseline gap-2">
+<span class="text-7xl font-notoSerif font-bold text-primary-fixed">12</span>
+<span class="text-primary/60 font-body">Sanctuaries</span>
+</div>
+<div class="mt-4 w-full bg-surface/50 h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[60%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl border border-outline-variant/10 flex flex-col justify-between hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined text-secondary mb-4" data-icon="air">air</span>
+<div>
+<h3 class="font-label text-[10px] tracking-widest text-on-surface-variant uppercase">Clean Air Exposure</h3>
+<p class="text-4xl font-notoSerif text-secondary-fixed-dim mt-2">80%</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl border border-outline-variant/10 flex flex-col justify-between hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined text-tertiary mb-4" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+<div>
+<h3 class="font-label text-[10px] tracking-widest text-on-surface-variant uppercase">Stamps Unlocked</h3>
+<p class="text-4xl font-notoSerif text-tertiary mt-2">14</p>
+</div>
+</div>
+<div class="md:col-span-4 bg-surface-container-high p-6 rounded-xl border border-outline-variant/20 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/30 flex items-center justify-center border border-tertiary/20">
+<span class="material-symbols-outlined text-tertiary">military_tech</span>
+</div>
+<div>
+<h4 class="font-manrope font-semibold text-on-surface">Next Milestone</h4>
+<p class="text-xs text-on-surface-variant">Visit 3 more UNESCO sites to reach 'Legacy Keeper'</p>
+</div>
+</div>
+<button class="w-full md:w-auto px-6 py-3 bg-gradient-to-r from-primary to-primary-container rounded-lg text-on-primary font-label text-xs font-bold tracking-widest hover:brightness-110 transition-all shadow-lg">VIEW MAP</button>
+</div>
+</section>
+<!-- Settings List -->
+<section class="space-y-6">
+<h3 class="font-headline text-2xl tracking-tight border-b border-outline-variant/20 pb-4">Preferences</h3>
+<div class="space-y-2">
+<!-- Language Setting -->
+<div class="group flex items-center justify-between p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="translate">translate</span>
+<div>
+<p class="font-manrope text-sm font-medium">Language</p>
+<p class="font-manrope text-xs text-on-surface-variant">English, Hindi, Tamil</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Theme Mode -->
+<div class="group flex items-center justify-between p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="dark_mode">dark_mode</span>
+<div>
+<p class="font-manrope text-sm font-medium">Appearance</p>
+<p class="font-manrope text-xs text-on-surface-variant">Dark Mode Active</p>
+</div>
+</div>
+<div class="w-10 h-5 bg-primary/20 rounded-full relative flex items-center px-1">
+<div class="w-3 h-3 bg-primary rounded-full ml-auto shadow-[0_0_8px_rgba(192,193,255,0.6)]"></div>
+</div>
+</div>
+<!-- Notifications -->
+<div class="group flex items-center justify-between p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<div>
+<p class="font-manrope text-sm font-medium">Notification Preferences</p>
+<p class="font-manrope text-xs text-on-surface-variant">Arrival alerts, Milestone updates</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Privacy -->
+<div class="group flex items-center justify-between p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="shield_person">shield_person</span>
+<div>
+<p class="font-manrope text-sm font-medium">Privacy &amp; Security</p>
+<p class="font-manrope text-xs text-on-surface-variant">Data encryption, Location masking</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Dangerous Actions -->
+<section class="pt-8 flex justify-center">
+<button class="flex items-center gap-2 text-error font-label text-xs tracking-widest opacity-60 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+                ARCHIVE PROFILE SESSION
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center pt-2 pb-6 px-4 bg-[#1b1b21]/80 backdrop-blur-2xl rounded-t-xl z-50 shadow-[0_-4px_24px_rgba(19,19,25,0.5)]">
+<a class="flex flex-col items-center justify-center text-[#c7c5d4] opacity-70 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="explore">explore</span>
+<span class="font-manrope text-[10px] uppercase tracking-[0.05em]">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#c7c5d4] opacity-70 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="map">map</span>
+<span class="font-manrope text-[10px] uppercase tracking-[0.05em]">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#c7c5d4] opacity-70 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-manrope text-[10px] uppercase tracking-[0.05em]">Passport</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#c7c5d4] opacity-70 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="history_edu">history_edu</span>
+<span class="font-manrope text-[10px] uppercase tracking-[0.05em]">Timeline</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#ffb77a] bg-[#802918]/20 rounded-xl px-3 py-1 scale-110 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-manrope text-[10px] uppercase tracking-[0.05em]">Profile</span>
+</a>
+</nav>
+</body></html>
