@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:bharat_heritage/features/monuments/data/models/monument_repository.dart';
 import '../data/models/monument.dart';
@@ -10,7 +9,7 @@ part 'monuments_provider.g.dart';
 // ---------------------------------------------------------------------------
 @riverpod
 Future<List<Monument>> monuments(Ref ref) async {
-  final repository = ref.watch(monumentsRepository);
+  final repository = ref.watch(monumentsRepositoryProvider);
   return repository.fetchMonuments();
 }
 
