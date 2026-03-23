@@ -606,10 +606,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(Icons.home, 'Home', true),
-                _buildNavItem(Icons.map, 'Map', false),
-                _buildNavItem(Icons.auto_stories, 'Passport', false),
-                _buildNavItem(Icons.person, 'Profile', false),
+                _buildNavItem(Icons.home, 'Home', true, () {}),
+                _buildNavItem(Icons.map, 'Map', false, () => context.go('/map')),
+                _buildNavItem(Icons.auto_stories, 'Passport', false, () {}),
+                _buildNavItem(Icons.person, 'Profile', false, () {}),
               ],
             ),
           ),
@@ -618,16 +618,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, bool isActive) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(icon, color: isActive ? AppColors.tertiary : AppColors.onSurfaceVariant, size: 24),
-        const SizedBox(height: 4),
-        Text(label.toUpperCase(),
-            style: GoogleFonts.manrope(color: isActive ? AppColors.tertiary : AppColors.onSurfaceVariant,
-                fontSize: 10, fontWeight: FontWeight.w800, letterSpacing: 0.5)),
-      ],
+  Widget _buildNavItem(IconData icon, String label, bool isActive, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: isActive ? AppColors.tertiary : AppColors.onSurfaceVariant, size: 24),
+          const SizedBox(height: 4),
+          Text(label.toUpperCase(),
+              style: GoogleFonts.manrope(color: isActive ? AppColors.tertiary : AppColors.onSurfaceVariant,
+                  fontSize: 10, fontWeight: FontWeight.w800, letterSpacing: 0.5)),
+        ],
+      ),
     );
   }
 

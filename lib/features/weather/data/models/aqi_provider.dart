@@ -12,11 +12,13 @@ Future<AqiData?> monumentAqi(Ref ref) async {
   final monument = await ref.watch(monumentOfTheDayProvider.future);
   if (monument == null) return null;
 
+  return ref.watch(aqiForCoordinatesProvider(monument.coordinates.lat, monument.coordinates.lon).future);
+}
+
+@riverpod
+Future<AqiData?> aqiForCoordinates(Ref ref, double lat, double lon) async {
   final repository = ref.watch(aqiRepositoryProvider);
-  return repository.fetchAqiData(
-    monument.coordinates.lat,
-    monument.coordinates.lon,
-  );
+  return repository.fetchAqiData(lat, lon);
 }
 
 // Returns a safety message and color category based on AQI avg_value

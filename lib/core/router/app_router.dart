@@ -7,6 +7,7 @@ import 'package:bharat_heritage/presentation/screens/login_screen.dart';
 import 'package:bharat_heritage/presentation/screens/sign_up_screen.dart';
 import '../../features/auth/domain/auth_provider.dart';
 import '../../presentation/screens/home_screen.dart';
+import 'package:bharat_heritage/presentation/screens/heritage_atlas_screen.dart';
 
 import '../../features/monuments/domain/monuments_provider.dart';
 import '../../features/monuments/data/models/monument.dart';
@@ -47,6 +48,10 @@ GoRouter appRouter(Ref ref) {
       GoRoute(
         path: '/',
         builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: '/map',
+        builder: (context, state) => const HeritageAtlasScreen(),
       ),
       GoRoute(
         path: '/login',
