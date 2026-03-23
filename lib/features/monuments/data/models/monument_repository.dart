@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:bharat_heritage/core/network/dio_client.dart';
 import 'package:bharat_heritage/features/monuments/data/models/monument.dart';
 
-part 'monuments_repository.g.dart';
+part 'monument_repository.g.dart';
 
 class MonumentsRepository {
   final Dio dio;
@@ -29,7 +29,7 @@ class MonumentsRepository {
 }
 
 @riverpod
-MonumentsRepository monumentsRepository(Ref ref) {
+MonumentsRepository monumentsRepositoryProvider(Ref ref) {
   final dio = ref.watch(dioProvider);
   return MonumentsRepository(dio: dio);
 }
