@@ -29,10 +29,10 @@ class GlassmorphicCard extends StatelessWidget {
           height: height,
           padding: padding,
           decoration: BoxDecoration(
-            color: AppColors.surfaceVariant.withOpacity(0.4),
+            color: AppColors.surfaceVariant.withValues(alpha:0.4),
             borderRadius: BorderRadius.circular(borderRadius),
             border: Border.all(
-              color: AppColors.outlineVariant.withOpacity(0.2),
+              color: AppColors.outlineVariant.withValues(alpha:0.2),
               width: 1,
             ),
           ),

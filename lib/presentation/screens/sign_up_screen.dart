@@ -70,8 +70,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 gradient: LinearGradient(
                   colors: [
                     AppColors.surface,
-                    AppColors.surface.withAlpha(200),
-                    AppColors.secondary.withAlpha(30),
+                    AppColors.surface.withValues(alpha:200),
+                    AppColors.secondary.withValues(alpha:30),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomRight,
@@ -213,9 +213,9 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           obscureText: obscureText,
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: TextStyle(color: AppColors.outline.withAlpha(150)),
+            hintStyle: TextStyle(color: AppColors.outline.withValues(alpha:150)),
             filled: true,
-            fillColor: AppColors.surfaceContainerHigh.withAlpha(100),
+            fillColor: AppColors.surfaceContainerHigh.withValues(alpha:100),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
             contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           ),

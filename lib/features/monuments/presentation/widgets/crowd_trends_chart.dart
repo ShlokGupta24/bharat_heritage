@@ -28,7 +28,7 @@ class CrowdTrendsChart extends StatelessWidget {
             isStrokeCapRound: true,
             belowBarData: BarAreaData(
               show: true,
-              color: AppColors.tertiary.withOpacity(0.2),
+              color: AppColors.tertiary.withValues(alpha:0.2),
             ),
             dotData: const FlDotData(show: false),
           ),

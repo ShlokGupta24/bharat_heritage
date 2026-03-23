@@ -131,26 +131,22 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
 
     return GoogleMap(
       initialCameraPosition: _initialPosition,
+
+      // ✅ NEW WAY: Apply style directly
+      style: _mapStyle.isNotEmpty ? _mapStyle : null,
+
       onMapCreated: (controller) {
         _mapController = controller;
-        // FIX 3: Apply style inside a post-frame callback so the surface is
-        // fully attached before we write to it — eliminates the buffer error
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) {
-            controller.setMapStyle(_mapStyle);
-            setState(() => _mapReady = true);
-          }
-        });
+        setState(() => _mapReady = true);
       },
+
       markers: markers,
       myLocationButtonEnabled: false,
       zoomControlsEnabled: false,
       mapToolbarEnabled: false,
       compassEnabled: false,
-      // FIX 4: liteModeEnabled on Android uses a static bitmap renderer
-      // instead of the GL surface — completely avoids buffer acquisition errors
-      // on lower-end devices. Remove this line if you need gestures like tilt.
       liteModeEnabled: false,
+
       onTap: (_) => setState(() => _selectedMonument = null),
     );
   }
@@ -164,7 +160,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [AppColors.surface.withOpacity(0.8), Colors.transparent],
+            colors: [AppColors.surface.withValues(alpha:0.8), Colors.transparent],
           ),
         ),
         padding: const EdgeInsets.fromLTRB(24, 50, 24, 0),
@@ -205,11 +201,11 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: AppColors.surfaceContainerLow.withOpacity(0.8),
+            color: AppColors.surfaceContainerLow.withValues(alpha:0.8),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColors.outlineVariant.withOpacity(0.3)),
+            border: Border.all(color: AppColors.outlineVariant.withValues(alpha:0.3)),
             boxShadow: [
-              BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 20, offset: const Offset(0, 10)),
+              BoxShadow(color: Colors.black.withValues(alpha:0.3), blurRadius: 20, offset: const Offset(0, 10)),
             ],
           ),
           child: Row(
@@ -217,7 +213,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
               const Icon(Icons.search, color: AppColors.onSurfaceVariant, size: 20),
               const SizedBox(width: 12),
               Text('Heritage Search',
-                  style: GoogleFonts.manrope(color: AppColors.onSurfaceVariant.withOpacity(0.5), fontSize: 14)),
+                  style: GoogleFonts.manrope(color: AppColors.onSurfaceVariant.withValues(alpha:0.5), fontSize: 14)),
               const Spacer(),
               const Icon(Icons.tune, color: AppColors.tertiary, size: 20),
             ],
@@ -233,7 +229,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Container(
-          color: AppColors.surface.withOpacity(0.9),
+          color: AppColors.surface.withValues(alpha:0.9),
           padding: const EdgeInsets.fromLTRB(24, 110, 24, 0),
           child: Column(
             children: [
@@ -279,7 +275,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
                     },
                   ),
                   loading: () => const Center(child: CircularProgressIndicator()),
-                  error: (_, __) => const Center(child: Text('Search failed')),
+                  error: (_, _) => const Center(child: Text('Search failed')),
                 ),
               ),
             ],
@@ -302,11 +298,11 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
         child: Container(
           height: 140,
           decoration: BoxDecoration(
-            color: AppColors.surfaceContainerLow.withOpacity(0.8),
+            color: AppColors.surfaceContainerLow.withValues(alpha:0.8),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.outlineVariant.withOpacity(0.2)),
+            border: Border.all(color: AppColors.outlineVariant.withValues(alpha:0.2)),
             boxShadow: [
-              BoxShadow(color: Colors.black.withOpacity(0.4), blurRadius: 30, offset: const Offset(0, 15)),
+              BoxShadow(color: Colors.black.withValues(alpha:0.4), blurRadius: 30, offset: const Offset(0, 15)),
             ],
           ),
           child: Row(
@@ -337,7 +333,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
-                              color: AppColors.secondaryContainer.withOpacity(0.4),
+                              color: AppColors.secondaryContainer.withValues(alpha:0.4),
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: const Text('UNESCO',
@@ -357,7 +353,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
                             data: (aqi) => _buildIndicator(Icons.air, 'AQI',
                                 '${aqi?.avgValue ?? '--'} (${aqi != null ? getAqiSafetyInfo(aqi.avgValue).label : '--'})'),
                             loading: () => _buildIndicator(Icons.air, 'AQI', '...'),
-                            error: (_, __) => _buildIndicator(Icons.air, 'AQI', 'N/A'),
+                            error: (_, _) => _buildIndicator(Icons.air, 'AQI', 'N/A'),
                           ),
                           const SizedBox(width: 16),
                           _buildIndicator(Icons.near_me, 'DIST', '2.4km'),
@@ -370,7 +366,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
                         decoration: BoxDecoration(
                           gradient: LinearGradient(colors: [
                             AppColors.primaryContainer,
-                            AppColors.primaryContainer.withOpacity(0.5),
+                            AppColors.primaryContainer.withValues(alpha:0.5),
                           ]),
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -429,9 +425,9 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
       child: Container(
         height: 80,
         decoration: BoxDecoration(
-          color: AppColors.surface.withOpacity(0.8),
+          color: AppColors.surface.withValues(alpha:0.8),
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-          border: Border.all(color: Colors.white.withAlpha(26)),
+          border: Border.all(color: Colors.white.withValues(alpha:26)),
         ),
         child: ClipRRect(
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),

@@ -111,10 +111,10 @@ Future<CrowdCurveData> crowdCurve(Ref ref) async {
   final ratio = maxTotal > 0 ? (total / maxTotal).clamp(0.0, 1.0) : 0.5;
 
   String label;
-  if (ratio > 0.7) label = 'Very Popular';
-  else if (ratio > 0.4) label = 'Popular';
-  else if (ratio > 0.15) label = 'Moderate';
-  else label = 'Quiet';
+  if (ratio > 0.7) {label = 'Very Popular';}
+  else if (ratio > 0.4) {label = 'Popular';}
+  else if (ratio > 0.15) {label = 'Moderate';}
+  else {label = 'Quiet';}
 
   // Foreign visitor share shifts peak earlier (tourists arrive earlier)
   final foreignShare = total > 0 ? foreign / total : 0.0;

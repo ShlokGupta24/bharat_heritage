@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:bharat_heritage/features/monuments/domain/monuments_provider.dart';
 import 'package:bharat_heritage/features/weather//data/aqi_repository.dart';

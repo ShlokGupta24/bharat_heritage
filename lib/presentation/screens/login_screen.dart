@@ -60,8 +60,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 gradient: LinearGradient(
                   colors: [
                     AppColors.surface,
-                    AppColors.surface.withAlpha(200),
-                    AppColors.primaryContainer.withAlpha(50),
+                    AppColors.surface.withValues(alpha:200),
+                    AppColors.primaryContainer.withValues(alpha:50),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomRight,
@@ -167,12 +167,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             
                             Row(
                               children: [
-                                Expanded(child: Divider(color: AppColors.outlineVariant.withAlpha(100))),
+                                Expanded(child: Divider(color: AppColors.outlineVariant.withValues(alpha:100))),
                                 const Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 16),
                                   child: Text('VAULT ACCESS', style: TextStyle(color: AppColors.outline, fontSize: 10, letterSpacing: 1.5)),
                                 ),
-                                Expanded(child: Divider(color: AppColors.outlineVariant.withAlpha(100))),
+                                Expanded(child: Divider(color: AppColors.outlineVariant.withValues(alpha:100))),
                               ],
                             ),
                             const SizedBox(height: 24),
@@ -222,9 +222,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           obscureText: obscureText,
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: TextStyle(color: AppColors.outline.withAlpha(150)),
+            hintStyle: TextStyle(color: AppColors.outline.withValues(alpha:150)),
             filled: true,
-            fillColor: AppColors.surfaceContainerHigh.withAlpha(100),
+            fillColor: AppColors.surfaceContainerHigh.withValues(alpha:100),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
             contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           ),
@@ -238,10 +238,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     return OutlinedButton.icon(
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.onSurface,
-        side: BorderSide(color: AppColors.outlineVariant.withAlpha(150)),
+        side: BorderSide(color: AppColors.outlineVariant.withValues(alpha:150)),
         padding: const EdgeInsets.symmetric(vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        backgroundColor: AppColors.surfaceContainerHighest.withAlpha(50),
+        backgroundColor: AppColors.surfaceContainerHighest.withValues(alpha:50),
       ),
       onPressed: () {},
       icon: Icon(icon, size: 24),
@@ -254,7 +254,7 @@ class JaaliPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.primaryContainer.withAlpha(40)
+      ..color = AppColors.primaryContainer.withValues(alpha:40)
       ..strokeWidth = 0.5;
 
     const spacing = 32.0;

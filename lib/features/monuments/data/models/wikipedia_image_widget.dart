@@ -30,7 +30,7 @@ class WikipediaImage extends ConsumerWidget {
             color: AppColors.surfaceContainerLow,
             child: const Center(child: CircularProgressIndicator()),
           ),
-      error: (_, __) => Image.asset(fallbackAsset, fit: fit),
+      error: (_, _) => Image.asset(fallbackAsset, fit: fit),
       data: (url) {
         if (url == null || url.isEmpty) {
           return Image.asset(fallbackAsset, fit: fit);
@@ -71,7 +71,7 @@ class WikipediaImageCard extends ConsumerWidget {
 
     return imageAsync.when(
       loading: () => Container(color: AppColors.surfaceContainerHigh),
-      error: (_, __) => Container(
+      error: (_, _) => Container(
         color: AppColors.surfaceContainerHigh,
         child: const Icon(Icons.image_not_supported, color: AppColors.onSurfaceVariant),
       ),

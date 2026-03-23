@@ -6,9 +6,9 @@ part 'visitor_stats.g.dart';
 @freezed
 abstract class VisitorStats with _$VisitorStats {
   const factory VisitorStats({
-    @JsonKey(name: 'name_of_the_monument_') required String monumentName,
-    @JsonKey(name: 'domestic___2019_20') int? domesticVisitors,
-    @JsonKey(name: 'foreign___2019_20') int? foreignVisitors,
+    required String monumentName,
+    int? domesticVisitors,
+    int? foreignVisitors,
   }) = _VisitorStats;
 
   factory VisitorStats.fromJson(Map<String, dynamic> json) => _$VisitorStatsFromJson(json);

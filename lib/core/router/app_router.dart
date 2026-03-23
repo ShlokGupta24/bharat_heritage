@@ -1,16 +1,12 @@
-import 'package:flutter/material.dart';
+
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-// Placeholder imports for generated screens
 import 'package:bharat_heritage/presentation/screens/login_screen.dart';
 import 'package:bharat_heritage/presentation/screens/sign_up_screen.dart';
 import '../../features/auth/domain/auth_provider.dart';
 import '../../presentation/screens/home_screen.dart';
 import 'package:bharat_heritage/presentation/screens/heritage_atlas_screen.dart';
-
-import '../../features/monuments/domain/monuments_provider.dart';
-import '../../features/monuments/data/models/monument.dart';
 
 part 'app_router.g.dart';
 
