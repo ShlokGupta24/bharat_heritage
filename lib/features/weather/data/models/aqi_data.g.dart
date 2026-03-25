@@ -21,11 +21,11 @@ _AqiData _$AqiDataFromJson(Map<String, dynamic> json) => _AqiData(
 Map<String, dynamic> _$AqiDataToJson(_AqiData instance) => <String, dynamic>{
   'city': instance.city,
   'station': instance.station,
-  'last_update': instance.lastUpdate,
-  'pollutant_id': instance.pollutantId,
-  'min_value': instance.minValue,
-  'max_value': instance.maxValue,
-  'avg_value': instance.avgValue,
+  'lastUpdate': instance.lastUpdate,
+  'pollutantId': instance.pollutantId,
+  'minValue': instance.minValue,
+  'maxValue': instance.maxValue,
+  'avgValue': instance.avgValue,
   'latitude': instance.latitude,
   'longitude': instance.longitude,
 };

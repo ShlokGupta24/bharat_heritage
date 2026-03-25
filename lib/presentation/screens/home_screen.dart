@@ -59,8 +59,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               _buildAppBar(),
               monumentOfTheDay.when(
                 data: (monument) => _buildParallaxHero(monument),
+              error: (_, _) => SliverToBoxAdapter(child: _buildHeroPlaceholder()),
                 loading: () => SliverToBoxAdapter(child: _buildHeroPlaceholder()),
-                error: (_, _) => SliverToBoxAdapter(child: _buildHeroPlaceholder()),
               ),
               SliverToBoxAdapter(
                 child: Padding(
@@ -92,7 +92,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget _buildAppBar() {
     return SliverAppBar(
       pinned: true,
-      backgroundColor: AppColors.surface.withValues(alpha:204),
+      backgroundColor: AppColors.surface.withAlpha(204),
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       leading: IconButton(
@@ -132,7 +132,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Colors.transparent, AppColors.surface.withValues(alpha:210)],
+                    colors: [Colors.transparent, AppColors.surface.withAlpha(210)],
                   ),
                 ),
               ),
@@ -230,7 +230,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       decoration: BoxDecoration(
         color: AppColors.surfaceContainerLow,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.white.withValues(alpha:0.05)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
       ),
       child: aqiAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
@@ -288,7 +288,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       decoration: BoxDecoration(
         color: AppColors.surfaceContainerLow,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.white.withValues(alpha:0.05)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
       ),
       child: crowdAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
@@ -329,9 +329,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
                         decoration: BoxDecoration(
-                          color: AppColors.secondaryContainer.withValues(alpha:0.3),
+                          color: AppColors.secondaryContainer.withValues(alpha: 0.3),
                           borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: AppColors.secondary.withValues(alpha:0.2)),
+                          border: Border.all(color: AppColors.secondary.withValues(alpha: 0.2)),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -367,13 +367,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         color: isPeak
                             ? AppColors.tertiary
                             : isQuiet
-                            ? AppColors.surfaceVariant.withValues(alpha:160)
+                            ? AppColors.surfaceVariant.withAlpha(160)
                             : heights[index] > 0.5
-                            ? AppColors.tertiary.withValues(alpha:102)
+                            ? AppColors.tertiary.withAlpha(102)
                             : AppColors.surfaceVariant,
                         borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
                         boxShadow: isPeak
-                            ? [BoxShadow(color: AppColors.tertiary.withValues(alpha:77), blurRadius: 10, spreadRadius: 2)]
+                            ? [BoxShadow(color: AppColors.tertiary.withAlpha(77), blurRadius: 10, spreadRadius: 2)]
                             : null,
                       ),
                     ),
@@ -428,16 +428,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight,
                 colors: [AppColors.surfaceContainer, AppColors.surfaceContainerLow]),
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: Colors.white.withValues(alpha:26)),
+            border: Border.all(color: Colors.white.withAlpha(26)),
           ),
           child: Row(
             children: [
               Container(
                 width: 64, height: 64,
                 decoration: BoxDecoration(
-                  color: AppColors.tertiaryContainer.withValues(alpha:77),
+                  color: AppColors.tertiaryContainer.withAlpha(77),
                   shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.tertiary.withValues(alpha:51)),
+                  border: Border.all(color: AppColors.tertiary.withAlpha(51)),
                 ),
                 child: const Icon(Icons.auto_stories, color: AppColors.tertiary, size: 32),
               ),
@@ -529,7 +529,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   decoration: BoxDecoration(
                     color: AppColors.surfaceContainer,
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.white.withValues(alpha:13)),
+                    border: Border.all(color: Colors.white.withAlpha(13)),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -547,7 +547,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                   alignment: Alignment.topRight,
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                                    decoration: BoxDecoration(color: Colors.black.withValues(alpha:102), borderRadius: BorderRadius.circular(8)),
+                                    decoration: BoxDecoration(color: Colors.black.withAlpha(102), borderRadius: BorderRadius.circular(8)),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
@@ -595,9 +595,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       child: Container(
         height: 80,
         decoration: BoxDecoration(
-          color: AppColors.surface.withValues(alpha:153),
+          color: AppColors.surface.withAlpha(153),
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-          border: Border.all(color: Colors.white.withValues(alpha:26)),
+          border: Border.all(color: Colors.white.withAlpha(26)),
         ),
         child: ClipRRect(
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
@@ -606,10 +606,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(Icons.home, 'Home', true, () {}),
-                _buildNavItem(Icons.map, 'Map', false, () => context.go('/map')),
-                _buildNavItem(Icons.auto_stories, 'Passport', false, () {}),
-                _buildNavItem(Icons.person, 'Profile', false, () {}),
+                _buildNavItem(Icons.home, 'Home', true),
+                _buildNavItem(Icons.map, 'Map', false),
+                _buildNavItem(Icons.auto_stories, 'Passport', false),
+                _buildNavItem(Icons.person, 'Profile', false),
               ],
             ),
           ),
@@ -618,20 +618,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, bool isActive, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: isActive ? AppColors.tertiary : AppColors.onSurfaceVariant, size: 24),
-          const SizedBox(height: 4),
-          Text(label.toUpperCase(),
-              style: GoogleFonts.manrope(color: isActive ? AppColors.tertiary : AppColors.onSurfaceVariant,
-                  fontSize: 10, fontWeight: FontWeight.w800, letterSpacing: 0.5)),
-        ],
-      ),
+  Widget _buildNavItem(IconData icon, String label, bool isActive) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(icon, color: isActive ? AppColors.tertiary : AppColors.onSurfaceVariant, size: 24),
+        const SizedBox(height: 4),
+        Text(label.toUpperCase(),
+            style: GoogleFonts.manrope(color: isActive ? AppColors.tertiary : AppColors.onSurfaceVariant,
+                fontSize: 10, fontWeight: FontWeight.w800, letterSpacing: 0.5)),
+      ],
     );
   }
 
@@ -641,7 +637,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       decoration: BoxDecoration(
         color: AppColors.tertiary,
         shape: BoxShape.circle,
-        boxShadow: [BoxShadow(color: AppColors.tertiary.withValues(alpha:0.3), blurRadius: 20, spreadRadius: 5)],
+        boxShadow: [BoxShadow(color: AppColors.tertiary.withValues(alpha: 0.3), blurRadius: 20, spreadRadius: 5)],
       ),
       child: const Icon(Icons.qr_code_scanner, color: AppColors.onTertiary, size: 32),
     );
@@ -651,7 +647,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final filtered = ref.watch(filteredMonumentsProvider);
     return Positioned.fill(
       child: Container(
-        color: AppColors.surface.withValues(alpha:0.95),
+        color: AppColors.surface.withValues(alpha: 0.95),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 60),
         child: Column(
           children: [

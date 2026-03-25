@@ -9,7 +9,7 @@ part 'monuments_provider.g.dart';
 // ---------------------------------------------------------------------------
 @riverpod
 Future<List<Monument>> monuments(Ref ref) async {
-  final repository = ref.watch(monumentsRepositoryProvider);
+  final repository = ref.watch(monumentsRepositoryProviderProvider);
   return repository.fetchMonuments();
 }
 

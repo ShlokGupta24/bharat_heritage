@@ -22,18 +22,18 @@ abstract class Monument with _$Monument {
   /// API response fields: id_no, name_en, short_description_en,
   /// date_inscribed, latitude, longitude, image_url (may be absent)
   factory Monument.fromUnescoJson(Map<String, dynamic> json) {
-    // The API returns latitude/longitude as top-level doubles.
-    // Fallback to 0.0 if missing to avoid null crashes.
-    final lat = (json['latitude'] as num?)?.toDouble() ?? 0.0;
-    final lon = (json['longitude'] as num?)?.toDouble() ?? 0.0;
+    // The API returns coordinates as a nested map: {"lon": ..., "lat": ...}
+    final coords = json['coordinates'] as Map<String, dynamic>?;
+    final lat = (coords?['lat'] as num?)?.toDouble() ?? 0.0;
+    final lon = (coords?['lon'] as num?)?.toDouble() ?? 0.0;
 
-    // id_no comes as an integer from the API, convert to String
+    // id_no comes as an integer or string from the API
     final id = (json['id_no'] ?? '').toString();
 
-    // Some records have no image_url field — keep it nullable
-    final imageUrl = json['image_url'] as String?;
+    // The API uses 'main_image_url' for the primary image
+    final imageUrl = json['main_image_url'] as String?;
 
-    // date_inscribed is an integer year in the API (e.g. 1983)
+    // date_inscribed is an integer or string year (e.g. 1983)
     final dateInscribed = (json['date_inscribed'] ?? '').toString();
 
     return Monument(

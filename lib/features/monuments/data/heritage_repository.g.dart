@@ -55,4 +55,4 @@ final class HeritageRepositoryProvider
 }
 
 String _$heritageRepositoryHash() =>
-    r'00cd4b4345f95dda8e50a445de7c9a372724502b';
+    r'8a4bc41ca0abc6e278f89d703f9a96bb5d43b559';

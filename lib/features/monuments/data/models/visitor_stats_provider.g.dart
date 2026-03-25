@@ -127,4 +127,4 @@ final class CrowdCurveProvider
   }
 }
 
-String _$crowdCurveHash() => r'cbc4fcbf925df2369712d0246a1037a4987a9783';
+String _$crowdCurveHash() => r'dd8434d74b0c20bd425b74f93371cf8c11e45e83';

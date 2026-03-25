@@ -9,10 +9,11 @@ part of 'monument_repository.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(monumentsRepository)
-const monumentsRepositoryProvider = MonumentsRepositoryProvider._();
+@ProviderFor(monumentsRepositoryProvider)
+const monumentsRepositoryProviderProvider =
+    MonumentsRepositoryProviderProvider._();
 
-final class MonumentsRepositoryProvider
+final class MonumentsRepositoryProviderProvider
     extends
         $FunctionalProvider<
           MonumentsRepository,
@@ -20,19 +21,19 @@ final class MonumentsRepositoryProvider
           MonumentsRepository
         >
     with $Provider<MonumentsRepository> {
-  const MonumentsRepositoryProvider._()
+  const MonumentsRepositoryProviderProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'monumentsRepositoryProvider',
+        name: r'monumentsRepositoryProviderProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$monumentsRepositoryHash();
+  String debugGetCreateSourceHash() => _$monumentsRepositoryProviderHash();
 
   @$internal
   @override
@@ -42,7 +43,7 @@ final class MonumentsRepositoryProvider
 
   @override
   MonumentsRepository create(Ref ref) {
-    return monumentsRepository(ref);
+    return monumentsRepositoryProvider(ref);
   }
 
   /// {@macro riverpod.override_with_value}
@@ -54,5 +55,5 @@ final class MonumentsRepositoryProvider
   }
 }
 
-String _$monumentsRepositoryHash() =>
-    r'7c900b698a39120b3d69c35b06b6a12e3a27c19a';
+String _$monumentsRepositoryProviderHash() =>
+    r'e140f55b0489a2212583bac3b7e583d14657aca9';
