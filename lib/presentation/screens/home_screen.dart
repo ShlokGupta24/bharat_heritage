@@ -606,10 +606,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(Icons.home, 'Home', true),
-                _buildNavItem(Icons.map, 'Map', false),
-                _buildNavItem(Icons.auto_stories, 'Passport', false),
-                _buildNavItem(Icons.person, 'Profile', false),
+                GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => context.go('/'), child: _buildNavItem(Icons.home, 'Home', true)),
+                GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => context.go('/map'), child: _buildNavItem(Icons.map, 'Map', false)),
+                GestureDetector(behavior: HitTestBehavior.opaque, onTap: () {}, child: _buildNavItem(Icons.auto_stories, 'Passport', false)),
+                GestureDetector(behavior: HitTestBehavior.opaque, onTap: () {}, child: _buildNavItem(Icons.person, 'Profile', false)),
               ],
             ),
           ),

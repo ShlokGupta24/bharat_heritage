@@ -131,22 +131,17 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
 
     return GoogleMap(
       initialCameraPosition: _initialPosition,
-
-      // ✅ NEW WAY: Apply style directly
       style: _mapStyle.isNotEmpty ? _mapStyle : null,
-
       onMapCreated: (controller) {
         _mapController = controller;
         setState(() => _mapReady = true);
       },
-
       markers: markers,
       myLocationButtonEnabled: false,
       zoomControlsEnabled: false,
       mapToolbarEnabled: false,
       compassEnabled: false,
-      liteModeEnabled: false,
-
+      liteModeEnabled: false, // Bypass OpenGL emulator issues using Lite Mode
       onTap: (_) => setState(() => _selectedMonument = null),
     );
   }
@@ -427,7 +422,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
         decoration: BoxDecoration(
           color: AppColors.surface.withValues(alpha:0.8),
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-          border: Border.all(color: Colors.white.withValues(alpha:26)),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
         ),
         child: ClipRRect(
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
