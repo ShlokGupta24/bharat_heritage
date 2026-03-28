@@ -1,9 +1,11 @@
+import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:bharat_heritage/core/theme/app_theme.dart';
 import 'package:bharat_heritage/features/monuments/domain/monuments_provider.dart';
 import 'package:bharat_heritage/features/monuments/data/models/monument.dart';
@@ -26,6 +28,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
   bool _isSearching = false;
   bool _mapReady = false; // FIX 2: Guard flag — prevents rendering until map surface is ready
   final TextEditingController _searchController = TextEditingController();
+  Position? _currentPosition;
 
   static const CameraPosition _initialPosition = CameraPosition(
     target: LatLng(20.5937, 78.9629),
@@ -58,6 +61,57 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
     super.initState();
     // FIX 1: Register observer so didChangeAppLifecycleState fires
     WidgetsBinding.instance.addObserver(this);
+    _initLocation();
+  }
+
+  /// Requests location permission and starts listening for position updates.
+  Future<void> _initLocation() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+    if (permission == LocationPermission.deniedForever) return;
+
+    // Get an initial fast fix, then stream updates.
+    try {
+      final pos = await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
+      );
+      if (mounted) setState(() => _currentPosition = pos);
+    } catch (_) {}
+
+    Geolocator.getPositionStream(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 20, // update every 20 m of movement
+      ),
+    ).listen((pos) {
+      if (mounted) setState(() => _currentPosition = pos);
+    });
+  }
+
+  /// Haversine great-circle distance in km.
+  double _distanceKm(double lat1, double lon1, double lat2, double lon2) {
+    const r = 6371.0;
+    final dLat = (lat2 - lat1) * pi / 180;
+    final dLon = (lon2 - lon1) * pi / 180;
+    final a = sin(dLat / 2) * sin(dLat / 2) +
+        cos(lat1 * pi / 180) * cos(lat2 * pi / 180) *
+            sin(dLon / 2) * sin(dLon / 2);
+    return r * 2 * atan2(sqrt(a), sqrt(1 - a));
+  }
+
+  /// Returns a human-readable distance string like "1.2 km" or "850 m".
+  String _formatDistance(Monument monument) {
+    if (_currentPosition == null) return '--';
+    final km = _distanceKm(
+      _currentPosition!.latitude,
+      _currentPosition!.longitude,
+      monument.coordinates.lat,
+      monument.coordinates.lon,
+    );
+    if (km < 1) return '${(km * 1000).round()} m';
+    return '${km.toStringAsFixed(1)} km';
   }
 
   @override
@@ -108,6 +162,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
             ),
 
           _buildHeader(),
+          _buildHeaderRow(),
           if (!_isSearching) _buildSearchTrigger(),
           if (_isSearching) _buildSearchOverlay(),
           if (_selectedMonument != null) _buildSitePreviewCard(_selectedMonument!),
@@ -137,11 +192,16 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
         setState(() => _mapReady = true);
       },
       markers: markers,
-      myLocationButtonEnabled: false,
       zoomControlsEnabled: false,
       mapToolbarEnabled: false,
       compassEnabled: false,
       liteModeEnabled: false, // Bypass OpenGL emulator issues using Lite Mode
+      zoomGesturesEnabled: true,
+      scrollGesturesEnabled: true,
+      tiltGesturesEnabled: true,
+      rotateGesturesEnabled: true,
+      myLocationEnabled: _currentPosition != null,
+      myLocationButtonEnabled: false, // we use our custom compass FAB
       onTap: (_) => setState(() => _selectedMonument = null),
     );
   }
@@ -149,41 +209,53 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
   Widget _buildHeader() {
     return Positioned(
       top: 0, left: 0, right: 0,
-      child: Container(
-        height: 100,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [AppColors.surface.withValues(alpha:0.8), Colors.transparent],
+      // Use a Column instead of a Container so the gradient doesn't form a
+      // hit-test target over the whole width — only the actual UI elements
+      // capture taps; the transparent space passes all touches to the map.
+      child: IgnorePointer(
+        // IgnorePointer on the gradient background layer only; we'll overlay
+        // the interactive row separately via a Stack.
+        child: Container(
+          height: 100,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [AppColors.surface.withValues(alpha: 0.85), Colors.transparent],
+            ),
           ),
         ),
-        padding: const EdgeInsets.fromLTRB(24, 50, 24, 0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                const Icon(Icons.menu, color: AppColors.tertiary),
-                const SizedBox(width: 16),
-                Text('BHARATHERITAGE',
-                  style: GoogleFonts.notoSerif(
-                    color: AppColors.tertiary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900,
-                    fontStyle: FontStyle.italic,
-                    letterSpacing: 2,
-                  ),
+      ),
+    );
+  }
+
+  Widget _buildHeaderRow() {
+    return Positioned(
+      top: 50, left: 24, right: 24,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.menu, color: AppColors.tertiary),
+              const SizedBox(width: 16),
+              Text('BHARATHERITAGE',
+                style: GoogleFonts.notoSerif(
+                  color: AppColors.tertiary,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                  fontStyle: FontStyle.italic,
+                  letterSpacing: 2,
                 ),
-              ],
-            ),
-            const CircleAvatar(
-              radius: 16,
-              backgroundColor: AppColors.surfaceContainerHigh,
-              backgroundImage: NetworkImage('https://lh3.googleusercontent.com/a/default-user'),
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          const CircleAvatar(
+            radius: 16,
+            backgroundColor: AppColors.surfaceContainerHigh,
+            backgroundImage: NetworkImage('https://lh3.googleusercontent.com/a/default-user'),
+          ),
+        ],
       ),
     );
   }
@@ -210,7 +282,20 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
               Text('Heritage Search',
                   style: GoogleFonts.manrope(color: AppColors.onSurfaceVariant.withValues(alpha:0.5), fontSize: 14)),
               const Spacer(),
-              const Icon(Icons.tune, color: AppColors.tertiary, size: 20),
+              GestureDetector(
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Filter options coming soon'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Icon(Icons.tune, color: AppColors.tertiary, size: 20),
+                ),
+              ),
             ],
           ),
         ),
@@ -293,7 +378,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
         child: Container(
           height: 140,
           decoration: BoxDecoration(
-            color: AppColors.surfaceContainerLow.withValues(alpha:0.8),
+            color: AppColors.surfaceContainerLow,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: AppColors.outlineVariant.withValues(alpha:0.2)),
             boxShadow: [
@@ -351,7 +436,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
                             error: (_, _) => _buildIndicator(Icons.air, 'AQI', 'N/A'),
                           ),
                           const SizedBox(width: 16),
-                          _buildIndicator(Icons.near_me, 'DIST', '2.4km'),
+                          _buildIndicator(Icons.near_me, 'DIST', _formatDistance(monument)),
                         ],
                       ),
                       const SizedBox(height: 8),
@@ -400,15 +485,24 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
   Widget _buildFloatingCompass() {
     return Positioned(
       bottom: 120, right: 30,
-      child: Opacity(
-        opacity: 0.4,
-        child: Container(
-          width: 50, height: 50,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: AppColors.outlineVariant),
+      child: GestureDetector(
+        onTap: () {
+          _mapController?.animateCamera(CameraUpdate.newCameraPosition(_initialPosition));
+        },
+        child: Opacity(
+          opacity: 0.9,
+          child: Container(
+            width: 50, height: 50,
+            decoration: BoxDecoration(
+              color: AppColors.surfaceContainerHigh,
+              shape: BoxShape.circle,
+              border: Border.all(color: AppColors.outlineVariant),
+              boxShadow: [
+                BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 10, offset: const Offset(0, 5)),
+              ],
+            ),
+            child: const Center(child: Icon(Icons.explore, color: AppColors.tertiary, size: 30)),
           ),
-          child: const Center(child: Icon(Icons.explore, color: AppColors.tertiary, size: 30)),
         ),
       ),
     );
