@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$VisitorStats {
 
-@JsonKey(name: 'name_of_the_monument_') String get monumentName;@JsonKey(name: 'domestic___2019_20') int? get domesticVisitors;@JsonKey(name: 'foreign___2019_20') int? get foreignVisitors;
+ String get monumentName; int? get domesticVisitors; int? get foreignVisitors;
 /// Create a copy of VisitorStats
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $VisitorStatsCopyWith<$Res>  {
   factory $VisitorStatsCopyWith(VisitorStats value, $Res Function(VisitorStats) _then) = _$VisitorStatsCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'name_of_the_monument_') String monumentName,@JsonKey(name: 'domestic___2019_20') int? domesticVisitors,@JsonKey(name: 'foreign___2019_20') int? foreignVisitors
+ String monumentName, int? domesticVisitors, int? foreignVisitors
 });
 
 
@@ -155,7 +155,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'name_of_the_monument_')  String monumentName, @JsonKey(name: 'domestic___2019_20')  int? domesticVisitors, @JsonKey(name: 'foreign___2019_20')  int? foreignVisitors)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String monumentName,  int? domesticVisitors,  int? foreignVisitors)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _VisitorStats() when $default != null:
 return $default(_that.monumentName,_that.domesticVisitors,_that.foreignVisitors);case _:
@@ -176,7 +176,7 @@ return $default(_that.monumentName,_that.domesticVisitors,_that.foreignVisitors)
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'name_of_the_monument_')  String monumentName, @JsonKey(name: 'domestic___2019_20')  int? domesticVisitors, @JsonKey(name: 'foreign___2019_20')  int? foreignVisitors)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String monumentName,  int? domesticVisitors,  int? foreignVisitors)  $default,) {final _that = this;
 switch (_that) {
 case _VisitorStats():
 return $default(_that.monumentName,_that.domesticVisitors,_that.foreignVisitors);case _:
@@ -196,7 +196,7 @@ return $default(_that.monumentName,_that.domesticVisitors,_that.foreignVisitors)
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'name_of_the_monument_')  String monumentName, @JsonKey(name: 'domestic___2019_20')  int? domesticVisitors, @JsonKey(name: 'foreign___2019_20')  int? foreignVisitors)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String monumentName,  int? domesticVisitors,  int? foreignVisitors)?  $default,) {final _that = this;
 switch (_that) {
 case _VisitorStats() when $default != null:
 return $default(_that.monumentName,_that.domesticVisitors,_that.foreignVisitors);case _:
@@ -211,12 +211,12 @@ return $default(_that.monumentName,_that.domesticVisitors,_that.foreignVisitors)
 @JsonSerializable()
 
 class _VisitorStats implements VisitorStats {
-  const _VisitorStats({@JsonKey(name: 'name_of_the_monument_') required this.monumentName, @JsonKey(name: 'domestic___2019_20') this.domesticVisitors, @JsonKey(name: 'foreign___2019_20') this.foreignVisitors});
+  const _VisitorStats({required this.monumentName, this.domesticVisitors, this.foreignVisitors});
   factory _VisitorStats.fromJson(Map<String, dynamic> json) => _$VisitorStatsFromJson(json);
 
-@override@JsonKey(name: 'name_of_the_monument_') final  String monumentName;
-@override@JsonKey(name: 'domestic___2019_20') final  int? domesticVisitors;
-@override@JsonKey(name: 'foreign___2019_20') final  int? foreignVisitors;
+@override final  String monumentName;
+@override final  int? domesticVisitors;
+@override final  int? foreignVisitors;
 
 /// Create a copy of VisitorStats
 /// with the given fields replaced by the non-null parameter values.
@@ -251,7 +251,7 @@ abstract mixin class _$VisitorStatsCopyWith<$Res> implements $VisitorStatsCopyWi
   factory _$VisitorStatsCopyWith(_VisitorStats value, $Res Function(_VisitorStats) _then) = __$VisitorStatsCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'name_of_the_monument_') String monumentName,@JsonKey(name: 'domestic___2019_20') int? domesticVisitors,@JsonKey(name: 'foreign___2019_20') int? foreignVisitors
+ String monumentName, int? domesticVisitors, int? foreignVisitors
 });
 
 

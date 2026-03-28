@@ -46,7 +46,7 @@ final class MonumentsProvider
   }
 }
 
-String _$monumentsHash() => r'f7819715ef48fc9fe21a81b82a26ce319f9650da';
+String _$monumentsHash() => r'873f0abc2bacb45047d7654c5f7ce73cb2678615';
 
 @ProviderFor(monumentOfTheDay)
 const monumentOfTheDayProvider = MonumentOfTheDayProvider._();

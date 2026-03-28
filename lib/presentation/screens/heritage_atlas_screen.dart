@@ -231,29 +231,39 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
 
   Widget _buildHeaderRow() {
     return Positioned(
-      top: 50, left: 24, right: 24,
+      top: 50, left: 16, right: 16,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              const Icon(Icons.menu, color: AppColors.tertiary),
-              const SizedBox(width: 16),
-              Text('BHARATHERITAGE',
+              IconButton(
+                icon: const Icon(Icons.menu, color: AppColors.tertiary),
+                onPressed: () {},
+              ),
+              const SizedBox(width: 4),
+              Text('BharatHeritage',
                 style: GoogleFonts.notoSerif(
-                  color: AppColors.tertiary,
-                  fontSize: 18,
+                  fontSize: 20,
                   fontWeight: FontWeight.w900,
-                  fontStyle: FontStyle.italic,
-                  letterSpacing: 2,
+                  color: AppColors.onSurface,
+                  letterSpacing: -0.5,
                 ),
               ),
             ],
           ),
-          const CircleAvatar(
-            radius: 16,
-            backgroundColor: AppColors.surfaceContainerHigh,
-            backgroundImage: NetworkImage('https://lh3.googleusercontent.com/a/default-user'),
+          Row(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.search, color: AppColors.onSurfaceVariant),
+                onPressed: () => setState(() => _isSearching = true),
+              ),
+              IconButton(
+                icon: const Icon(Icons.notifications_none, color: AppColors.onSurfaceVariant),
+                onPressed: () {},
+              ),
+              const SizedBox(width: 8),
+            ],
           ),
         ],
       ),
@@ -527,7 +537,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
               children: [
                 _buildNavItem(Icons.home, 'Home', false, () => context.go('/')),
                 _buildNavItem(Icons.map, 'Map', true, () {}),
-                _buildNavItem(Icons.auto_stories, 'Timeline', false, () {}),
+                _buildNavItem(Icons.auto_stories, 'Passport', false, () => context.go('/passport')),
                 _buildNavItem(Icons.person, 'Profile', false, () {}),
               ],
             ),

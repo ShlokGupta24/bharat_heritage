@@ -9,11 +9,11 @@ part of 'aqi_data.dart';
 _AqiData _$AqiDataFromJson(Map<String, dynamic> json) => _AqiData(
   city: json['city'] as String,
   station: json['station'] as String,
-  lastUpdate: json['last_update'] as String,
-  pollutantId: json['pollutant_id'] as String,
-  minValue: json['min_value'] as String,
-  maxValue: json['max_value'] as String,
-  avgValue: json['avg_value'] as String,
+  lastUpdate: json['lastUpdate'] as String,
+  pollutantId: json['pollutantId'] as String,
+  minValue: json['minValue'] as String,
+  maxValue: json['maxValue'] as String,
+  avgValue: json['avgValue'] as String,
   latitude: json['latitude'] as String,
   longitude: json['longitude'] as String,
 );
