@@ -569,7 +569,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
                 _buildNavItem(Icons.home, 'Home', false, () => context.go('/')),
                 _buildNavItem(Icons.map, 'Map', true, () {}),
                 _buildNavItem(Icons.auto_stories, 'Passport', false, () => context.go('/passport')),
-                _buildNavItem(Icons.person, 'Profile', false, () {}),
+                _buildNavItem(Icons.person, 'Profile', false, () => context.go('/profile')),
               ],
             ),
           ),

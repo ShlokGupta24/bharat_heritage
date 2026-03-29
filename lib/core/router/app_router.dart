@@ -10,6 +10,7 @@ import 'package:bharat_heritage/presentation/screens/heritage_atlas_screen.dart'
 import 'package:bharat_heritage/presentation/screens/passport_screen.dart';
 import 'package:bharat_heritage/presentation/screens/monument_detail_screen.dart';
 import 'package:bharat_heritage/presentation/screens/bookmarks_screen.dart';
+import 'package:bharat_heritage/presentation/screens/profile_screen.dart';
 part 'app_router.g.dart';
 
 T? listFirstWhere<T>(Iterable<T> list, bool Function(T) test) {
@@ -76,6 +77,10 @@ GoRouter appRouter(Ref ref) {
       GoRoute(
         path: '/bookmarks',
         builder: (context, state) => const BookmarksScreen(),
+      ),
+      GoRoute(
+        path: '/profile',
+        builder: (context, state) => const ProfileScreen(),
       ),
     ],
   );

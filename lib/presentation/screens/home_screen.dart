@@ -718,7 +718,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => context.go('/'), child: _buildNavItem(Icons.home, 'Home', true)),
                 GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => context.go('/map'), child: _buildNavItem(Icons.map, 'Map', false)),
                 GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => context.go('/passport'), child: _buildNavItem(Icons.auto_stories, 'Passport', false)),
-                GestureDetector(behavior: HitTestBehavior.opaque, onTap: () {}, child: _buildNavItem(Icons.person, 'Profile', false)),
+                GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => context.go('/profile'), child: _buildNavItem(Icons.person, 'Profile', false)),
               ],
             ),
           ),

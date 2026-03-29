@@ -1033,7 +1033,7 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
                     child: _navItem(Icons.auto_stories, 'Passport', true)),
                 GestureDetector(
                     behavior: HitTestBehavior.opaque,
-                    onTap: () {},
+                    onTap: () => context.go('/profile'),
                     child: _navItem(Icons.person, 'Profile', false)),
               ],
             ),
