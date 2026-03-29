@@ -15,12 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AqiData {
 
- String get city; String get station;// ignore: invalid_annotation_target
-@JsonKey(name: 'last_update') String get lastUpdate;// ignore: invalid_annotation_target
-@JsonKey(name: 'pollutant_id') String get pollutantId;// ignore: invalid_annotation_target
-@JsonKey(name: 'min_value') String get minValue;// ignore: invalid_annotation_target
-@JsonKey(name: 'max_value') String get maxValue;// ignore: invalid_annotation_target
-@JsonKey(name: 'avg_value') String get avgValue; String get latitude; String get longitude;
+ String get city; String get station;@JsonKey(name: 'last_update') String get lastUpdate;@JsonKey(name: 'pollutant_id') String get pollutantId;@JsonKey(name: 'min_value') String get minValue;@JsonKey(name: 'max_value') String get maxValue;@JsonKey(name: 'avg_value') String get avgValue; String get latitude; String get longitude;
 /// Create a copy of AqiData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -227,15 +222,10 @@ class _AqiData implements AqiData {
 
 @override final  String city;
 @override final  String station;
-// ignore: invalid_annotation_target
 @override@JsonKey(name: 'last_update') final  String lastUpdate;
-// ignore: invalid_annotation_target
 @override@JsonKey(name: 'pollutant_id') final  String pollutantId;
-// ignore: invalid_annotation_target
 @override@JsonKey(name: 'min_value') final  String minValue;
-// ignore: invalid_annotation_target
 @override@JsonKey(name: 'max_value') final  String maxValue;
-// ignore: invalid_annotation_target
 @override@JsonKey(name: 'avg_value') final  String avgValue;
 @override final  String latitude;
 @override final  String longitude;

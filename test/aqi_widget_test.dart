@@ -5,15 +5,15 @@ import 'package:bharat_heritage/core/theme/glassmorphic_card.dart';
 void main() {
   testWidgets('AQI Alert Card renders properly', (WidgetTester tester) async {
     await tester.pumpWidget(
-      MaterialApp(
+      const MaterialApp(
         home: Scaffold(
           body: GlassmorphicCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Live AQI'),
-                const Text('142'),
-                const Text('Moderate'),
+                Text('Live AQI'),
+                Text('142'),
+                Text('Moderate'),
               ],
             ),
           ),

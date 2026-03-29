@@ -100,7 +100,7 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
                           userAsync.value?.displayName ?? userAsync.value?.email),
                       loading: () => _buildHeroSkeleton(),
                       error: (e, _) => _buildHeroSection(
-                          UserPassport(visits: const [], totalMonuments: 43), null),
+                          const UserPassport(visits: [], totalMonuments: 43), null),
                     ),
                     const SizedBox(height: 32),
                     // ── Achievements ──

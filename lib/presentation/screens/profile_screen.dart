@@ -201,7 +201,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: AppColors.primary, width: 1.5),
+            borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
           ),
         ),
       ),
@@ -1132,7 +1132,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       children: [
         Text('Preferences', style: GoogleFonts.notoSerif(color: isDark ? Colors.white : Colors.black87, fontSize: 24)),
         const SizedBox(height: 16),
-        Divider(color: AppColors.outlineVariant, height: 1),
+        const Divider(color: AppColors.outlineVariant, height: 1),
         const SizedBox(height: 16),
 
         // Language — English only, show dialog that says English is the only option

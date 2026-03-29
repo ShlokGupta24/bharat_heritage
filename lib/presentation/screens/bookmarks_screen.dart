@@ -291,9 +291,9 @@ class BookmarksScreen extends ConsumerWidget {
             // Bookmark remove button
             GestureDetector(
               onTap: () => ref.read(bookmarkProvider.notifier).toggleBookmark(monument.id),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: const Icon(Icons.bookmark, color: AppColors.tertiary, size: 22),
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(Icons.bookmark, color: AppColors.tertiary, size: 22),
               ),
             ),
           ],

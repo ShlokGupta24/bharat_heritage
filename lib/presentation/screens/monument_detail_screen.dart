@@ -8,13 +8,14 @@ import '../../core/theme/app_theme.dart';
 import '../../core/theme/glassmorphic_card.dart';
 import '../../features/monuments/data/models/monument.dart';
 import '../../features/monuments/domain/monuments_provider.dart';
-import '../../features/passport/domain/passport_provider.dart';
-import '../../features/auth/domain/auth_provider.dart';
-import '../../features/monuments/data/models/wikipedia_image_widget.dart';
-import '../../features/weather/domain/aqi_provider.dart';
+import 'package:bharat_heritage/features/passport/domain/passport_provider.dart';
+import 'package:bharat_heritage/features/passport/data/passport_repository.dart';
+import 'package:bharat_heritage/features/auth/domain/user_provider.dart';
+import 'package:bharat_heritage/features/auth/domain/auth_provider.dart';
+import 'package:bharat_heritage/features/monuments/data/models/wikipedia_image_widget.dart';
+import 'package:bharat_heritage/features/weather/domain/aqi_provider.dart';
 import '../../features/bookmarks/domain/bookmark_provider.dart';
 import '../../features/monuments/data/models/wikipedia_provider.dart';
-import '../../features/monuments/data/models/visitor_stats_provider.dart';
 class AsymmetricClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -38,144 +39,6 @@ class MonumentDetailScreen extends ConsumerStatefulWidget {
 }
 
 class _MonumentDetailScreenState extends ConsumerState<MonumentDetailScreen> {
-  static const _styleMap = {
-    'taj mahal': 'Mughal Architecture',
-    'agra fort': 'Mughal Architecture',
-    'humayun': 'Mughal Architecture',
-    'red fort complex': 'Mughal Architecture',
-    'fatehpur sikri': 'Mughal Architecture',
-    'qutb minar': 'Indo-Islamic Architecture',
-    'elephanta caves': 'Rock-cut Hindu Architecture',
-    'mahabalipuram': 'Pallava Architecture',
-    'jaipur city': 'Rajput / City Planning',
-    'moidams': 'Ahom Architecture',
-    'hoysalas': 'Hoysala Architecture',
-    'santiniketan': 'Modern / Eclectic',
-    'sundarbans': 'Natural Heritage (Mangrove)',
-    'jantar mantar': 'Rajput Architecture',
-    'western ghats': 'Natural Heritage (Biological)',
-    'ajanta caves': 'Rock-cut Buddhist Architecture',
-    'nalanda': 'Indo-Gangetic / Pala Art',
-    'sanchi': 'Buddhist Architecture',
-    'convents of goa': 'Portuguese-Baroque',
-    'dholavira': 'Harappan Architecture',
-    'great himalayan': 'Natural Heritage',
-    'chola temples': 'Dravidian Architecture',
-    'hampi': 'Vijayanagara Architecture',
-    'khajuraho': 'Chandela / Nagara Style',
-    'khangchendzonga': 'Mixed Heritage',
-    'maratha military': 'Maratha Military Architecture',
-    'victorian gothic': 'Victorian Gothic & Art Deco',
-    'rani-ki-vav': 'Maru-Gurjara Style',
-    'champaner': 'Indo-Islamic Architecture',
-    'chhatrapati shivaji': 'Victorian Gothic Revival',
-    'ellora caves': 'Rock-cut Architecture',
-    'pattadakal': 'Chalukyan / Vesara Style',
-    'hill forts': 'Rajput Architecture',
-    'ahmadabad': 'Indo-Islamic (Sultanate)',
-    'kakatiya': 'Kakatiya Architecture',
-    'kaziranga': 'Natural Heritage',
-    'keoladeo': 'Natural Heritage',
-    'mahabodhi': 'Buddhist Architecture',
-    'manas': 'Natural Heritage',
-    'mountain railways': 'Colonial Engineering',
-    'nanda devi': 'Natural Heritage',
-    'bhimbetka': 'Prehistoric Rock Art',
-    'sun temple': 'Kalinga Architecture',
-    'le corbusier': 'Modern Movement Architecture',
-  };
-
-  static const _materialMap = {
-    'taj mahal': 'White Makrana Marble',
-    'agra fort': 'Red Sandstone',
-    'humayun': 'Red Sandstone & Marble',
-    'red fort complex': 'Red Sandstone',
-    'fatehpur sikri': 'Red Sandstone',
-    'qutb minar': 'Red Sandstone & Marble',
-    'elephanta caves': 'Basalt Rock',
-    'mahabalipuram': 'Granite',
-    'jaipur city': 'Pink Sandstone',
-    'moidams': 'Earth, Brick & Stone',
-    'hoysalas': 'Soapstone (Steatite)',
-    'santiniketan': 'Laterite & Cement',
-    'sundarbans': 'Natural Ecosystem',
-    'jantar mantar': 'Marble & Stone',
-    'western ghats': 'Basalt & Laterite',
-    'ajanta caves': 'Basalt Rock',
-    'nalanda': 'Brick',
-    'sanchi': 'Sandstone',
-    'convents of goa': 'Laterite & Lime',
-    'dholavira': 'Limestone & Mud Brick',
-    'great himalayan': 'Crystalline Rock',
-    'chola temples': 'Granite',
-    'hampi': 'Granite',
-    'khajuraho': 'Sandstone',
-    'khangchendzonga': 'Mixed Sedimentary',
-    'maratha military': 'Basalt & Stone',
-    'victorian gothic': 'Teak & Stone',
-    'rani-ki-vav': 'Sandstone',
-    'champaner': 'Stone & Marble',
-    'chhatrapati shivaji': 'Italian Marble & Sandstone',
-    'ellora caves': 'Basalt Rock',
-    'pattadakal': 'Sandstone',
-    'hill forts': 'Stone & Lime',
-    'ahmadabad': 'Stone & Timber',
-    'kakatiya': 'Sandstone & Basalt',
-    'kaziranga': 'Alluvial Soil',
-    'keoladeo': 'Sedimentary',
-    'mahabodhi': 'Brick & Sandstone',
-    'manas': 'Sedimentary & Alluvial',
-    'mountain railways': 'Steel, Iron & Stone',
-    'nanda devi': 'Glacial & Crystalline',
-    'bhimbetka': 'Sandstone',
-    'sun temple': 'Khondalite Sandstone',
-    'le corbusier': 'Reinforced Concrete',
-  };
-
-  String _getStyle(String name) {
-    final n = name.toLowerCase();
-    for (final entry in _styleMap.entries) {
-      if (n.contains(entry.key)) return entry.value;
-    }
-    return 'Heritage Architecture';
-  }
-
-  String _getMaterial(String name) {
-    final n = name.toLowerCase();
-    for (final entry in _materialMap.entries) {
-      if (n.contains(entry.key)) return entry.value;
-    }
-    return 'Stone & Masonry';
-  }
-
-  /// Generate a unique but deterministic daily density for each monument
-  int _getLiveDensity(Monument monument, List<dynamic> allStats) {
-    // First try to match real visitor stats
-    final match = allStats.where((s) =>
-      s.monumentName.toLowerCase().contains(monument.name.toLowerCase()) ||
-      monument.name.toLowerCase().contains(s.monumentName.toLowerCase())
-    ).firstOrNull;
-
-    if (match != null) {
-      final dailyVisits = (((match.domesticVisitors ?? 0) + (match.foreignVisitors ?? 0)) ~/ 365);
-      final base = (dailyVisits * 0.1).round();
-      // Add time-based variation: more visitors mid-day
-      final hour = DateTime.now().hour;
-      final curve = hour >= 9 && hour <= 16 ? 1.4 : 0.6;
-      return (base * curve).round().clamp(10, 9999);
-    }
-
-    // Fallback: deterministic value from monument name hash
-    final hash = monument.name.codeUnits.fold(0, (a, b) => a + b);
-    return (hash % 3000 + 500);
-  }
-
-  Monument? _getMonument(List<Monument> monuments) {
-    for (var m in monuments) {
-      if (m.id == widget.monumentId) return m;
-    }
-    return null;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +48,7 @@ class _MonumentDetailScreenState extends ConsumerState<MonumentDetailScreen> {
       backgroundColor: AppColors.surface,
       body: monumentsAsync.when(
         data: (monuments) {
-          final monument = _getMonument(monuments);
+          final monument = monuments.where((m) => m.id == widget.monumentId).firstOrNull;
           if (monument == null) {
             return const Center(child: Text("Monument not found", style: TextStyle(color: Colors.white)));
           }
@@ -201,6 +64,8 @@ class _MonumentDetailScreenState extends ConsumerState<MonumentDetailScreen> {
     final wikiDataAsync = ref.watch(wikipediaDetailsProvider(monument.name));
     final wiki = wikiDataAsync.value;
     final isBookmarked = ref.watch(bookmarkProvider).value?.contains(monument.id) ?? false;
+
+    final styling = ref.watch(monumentStylerProvider(monument));
 
     return Stack(
       children: [
@@ -236,9 +101,9 @@ class _MonumentDetailScreenState extends ConsumerState<MonumentDetailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 24),
-                    _buildContextCard(monument, wiki),
+                    _buildContextCard(monument, wiki, styling),
                     const SizedBox(height: 48),
-                    _buildLiveIntelligence(monument),
+                    _buildLiveIntelligence(monument, styling),
                     const SizedBox(height: 48),
                     _buildGallery(monument, wiki),
                     const SizedBox(height: 120), // Bottom padding for check-in button
@@ -358,12 +223,12 @@ class _MonumentDetailScreenState extends ConsumerState<MonumentDetailScreen> {
                   ? Image.network(monument.imageUrl!, fit: BoxFit.cover)
                   : const WikipediaImageCard(monumentName: 'Placeholder'),
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [AppColors.surface, Colors.transparent],
-                    stops: const [0.0, 0.4],
+                    stops: [0.0, 0.4],
                   ),
                 ),
               ),
@@ -413,7 +278,7 @@ class _MonumentDetailScreenState extends ConsumerState<MonumentDetailScreen> {
     );
   }
 
-  Widget _buildContextCard(Monument monument, WikiData? wiki) {
+  Widget _buildContextCard(Monument monument, WikiData? wiki, Map<String, dynamic> styling) {
     return Transform.translate(
       offset: const Offset(0, -40),
       child: GlassmorphicCard(
@@ -438,7 +303,7 @@ class _MonumentDetailScreenState extends ConsumerState<MonumentDetailScreen> {
                       children: [
                         Text('ARCHITECTURAL STYLE', style: GoogleFonts.manrope(color: AppColors.onSurfaceVariant, fontSize: 8, fontWeight: FontWeight.bold, letterSpacing: 1)),
                         const SizedBox(height: 4),
-                        Text(_getStyle(monument.name), style: GoogleFonts.manrope(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
+                        Text(styling['style'], style: GoogleFonts.manrope(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -453,7 +318,7 @@ class _MonumentDetailScreenState extends ConsumerState<MonumentDetailScreen> {
                       children: [
                         Text('PRIMARY MATERIAL', style: GoogleFonts.manrope(color: AppColors.onSurfaceVariant, fontSize: 8, fontWeight: FontWeight.bold, letterSpacing: 1)),
                         const SizedBox(height: 4),
-                        Text(_getMaterial(monument.name), style: GoogleFonts.manrope(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
+                        Text(styling['material'], style: GoogleFonts.manrope(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -466,11 +331,9 @@ class _MonumentDetailScreenState extends ConsumerState<MonumentDetailScreen> {
     );
   }
 
-  Widget _buildLiveIntelligence(Monument monument) {
+  Widget _buildLiveIntelligence(Monument monument, Map<String, dynamic> styling) {
     final aqiAsync = ref.watch(aqiProvider(monument.coordinates));
-    
-    final allStats = ref.watch(allVisitorStatsProvider).value ?? [];
-    final liveDensity = _getLiveDensity(monument, allStats);
+    final liveDensity = styling['density'];
 
 
     return Column(
@@ -665,40 +528,48 @@ class _MonumentDetailScreenState extends ConsumerState<MonumentDetailScreen> {
     ref.invalidate(nearbyMonumentProvider);
 
     try {
-      final nearbyMonument = await ref.read(nearbyMonumentProvider.future);
+      // 1. Single GPS Scan
+      final nearby = await ref.read(nearbyMonumentProvider.future);
       if (!mounted) return;
 
-      if (nearbyMonument == null) {
+      if (nearby == null) {
         Navigator.pop(context);
         _showNoMonumentFoundDialog();
         return;
       }
       
-      // If we are checking in on a detail screen, theoretically it could be for ANY nearby monument, 
-      // but the HTML says "Check-in Now". We'll just run the generic check.
-      
+      // 2. Check visited status
       final visited = await ref.read(visitedMonumentIdsProvider.future);
       if (!mounted) return;
 
-      if (visited.contains(nearbyMonument.id)) {
+      if (visited.contains(nearby.id)) {
         Navigator.pop(context);
-        _showAlreadyCollectedDialog(nearbyMonument.name);
+        _showAlreadyCollectedDialog(nearby.name);
         return;
       }
 
-      final newStampName = await ref.read(tryAwardStampProvider.future);
-      if (!mounted) return;
-      Navigator.pop(context);
+      // 3. Award stamp for THIS specific monument (no second GPS call)
+      final repo = ref.read(passportRepositoryProvider);
+      final user = ref.read(currentUserProvider).value;
 
-      if (newStampName != null) {
-        _showStampUnlockedDialog(newStampName);
+      if (user != null) {
+        await repo.recordVisit(
+          uid: user.uid,
+          monumentId: nearby.id,
+          monumentName: nearby.name,
+        );
+        if (!mounted) return;
+        Navigator.pop(context);
+        _showStampUnlockedDialog(nearby.name);
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: const Text('Could not collect stamp.'), backgroundColor: AppColors.error));
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Authentication error.'), backgroundColor: AppColors.error));
       }
     } catch (e) {
+      debugPrint('Detail Check-in error: $e');
       if (mounted) {
         Navigator.pop(context);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: const Text('Error verifying location.'), backgroundColor: AppColors.error));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Location verification failed: $e'), backgroundColor: AppColors.error));
       }
     }
   }

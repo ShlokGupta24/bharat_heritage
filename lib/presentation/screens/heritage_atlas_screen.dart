@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -29,6 +30,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
   bool _mapReady = false; // FIX 2: Guard flag — prevents rendering until map surface is ready
   final TextEditingController _searchController = TextEditingController();
   Position? _currentPosition;
+  StreamSubscription<Position>? _positionStreamSubscription;
 
   static const CameraPosition _initialPosition = CameraPosition(
     target: LatLng(20.5937, 78.9629),
@@ -82,7 +84,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
       if (mounted) setState(() => _currentPosition = pos);
     } catch (_) {}
 
-    Geolocator.getPositionStream(
+    _positionStreamSubscription = Geolocator.getPositionStream(
       locationSettings: const LocationSettings(
         accuracy: LocationAccuracy.high,
         distanceFilter: 20,
@@ -154,6 +156,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
     // FIX 1: Remove observer and explicitly dispose the map controller to
     // release the surface buffer — prevents the buffer leak on screen exit
     WidgetsBinding.instance.removeObserver(this);
+    _positionStreamSubscription?.cancel();
     _mapController?.dispose();
     _searchController.dispose();
     super.dispose();
@@ -272,7 +275,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
         children: [
           Row(
             children: [
-              Image.asset('design/screen.png', height: 26),
+              const Image(image: AssetImage('design/screen.png'), height: 26),
               const SizedBox(width: 10),
               Text('BharatHeritage',
                 style: GoogleFonts.notoSerif(

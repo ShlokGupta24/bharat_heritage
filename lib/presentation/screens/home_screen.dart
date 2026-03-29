@@ -12,7 +12,9 @@ import 'package:bharat_heritage/features/monuments/data/models/wikipedia_image_w
 import 'package:bharat_heritage/features/monuments/data/models/visitor_stats_provider.dart';
 import 'package:bharat_heritage/features/passport/domain/passport_provider.dart';
 import 'package:bharat_heritage/features/passport/data/models/passport_model.dart';
-import '../../features/monuments/data/models/monument.dart';
+import 'package:bharat_heritage/features/passport/data/passport_repository.dart';
+import 'package:bharat_heritage/features/auth/domain/user_provider.dart';
+import 'package:bharat_heritage/features/monuments/data/models/monument.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -101,7 +103,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       automaticallyImplyLeading: false,
       title: Row(
         children: [
-          Image.asset('design/screen.png', height: 26),
+          const Image(image: AssetImage('design/screen.png'), height: 26),
           const SizedBox(width: 10),
           Text('BharatHeritage',
               style: GoogleFonts.notoSerif(fontSize: 20, fontWeight: FontWeight.w900, color: AppColors.onSurface, letterSpacing: -0.5)),
@@ -864,11 +866,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       builder: (_) => const Center(child: CircularProgressIndicator(color: AppColors.tertiary)),
     );
 
-    // Refresh location and nearby monument checks
     ref.invalidate(currentPositionProvider);
     ref.invalidate(nearbyMonumentProvider);
 
     try {
+      // 1. Single GPS Scan
       final monument = await ref.read(nearbyMonumentProvider.future);
       if (!mounted) return;
 
@@ -878,6 +880,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         return;
       }
 
+      // 2. Check visited status
       final visited = await ref.read(visitedMonumentIdsProvider.future);
       if (!mounted) return;
 
@@ -887,19 +890,28 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         return;
       }
 
-      final newStampName = await ref.read(tryAwardStampProvider.future);
-      if (!mounted) return;
-      Navigator.pop(context); // Close loading
-
-      if (newStampName != null) {
-        _showStampUnlockedDialog(newStampName);
+      // 3. Award stamp for THIS specific monument (no second GPS call)
+      final repo = ref.read(passportRepositoryProvider);
+      final user = ref.read(currentUserProvider).value;
+      
+      if (user != null) {
+        await repo.recordVisit(
+          uid: user.uid,
+          monumentId: monument.id,
+          monumentName: monument.name,
+        );
+        if (!mounted) return;
+        Navigator.pop(context); // Close loading
+        _showStampUnlockedDialog(monument.name);
       } else {
-         _showSnackBar('Could not collect stamp. Please try again.', isError: true);
+        Navigator.pop(context);
+        _showSnackBar('Authentication error. Please sign in again.', isError: true);
       }
     } catch (e) {
+      debugPrint('FAB Check-in error: $e');
       if (mounted) {
         Navigator.pop(context); // Close loading
-        _showSnackBar('Error verifying location. Please ensure location services are enabled.', isError: true);
+        _showSnackBar('Location verification failed: $e', isError: true);
       }
     }
   }

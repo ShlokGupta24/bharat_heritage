@@ -165,7 +165,7 @@ final class CurrentPositionProvider
   }
 }
 
-String _$currentPositionHash() => r'c49d8c25e22cbafb001f70746040f42cb1f84780';
+String _$currentPositionHash() => r'015e96fc1f6e01fa05564301ed58b776b350beaf';
 
 @ProviderFor(nearbyMonument)
 const nearbyMonumentProvider = NearbyMonumentProvider._();
@@ -203,7 +203,7 @@ final class NearbyMonumentProvider
   }
 }
 
-String _$nearbyMonumentHash() => r'8186626c42ce569c488e9daba872a368abbf906a';
+String _$nearbyMonumentHash() => r'39a849a061b3a4806fd5c8f4dc6c17174309626d';
 
 @ProviderFor(nearbyMonuments10km)
 const nearbyMonuments10kmProvider = NearbyMonuments10kmProvider._();

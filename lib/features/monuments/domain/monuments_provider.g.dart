@@ -215,3 +215,86 @@ final class OtherExpeditionsProvider
 }
 
 String _$otherExpeditionsHash() => r'adb32e7ddcde4baa705caae2f55b0bedb4b8a8d0';
+
+@ProviderFor(monumentStyler)
+const monumentStylerProvider = MonumentStylerFamily._();
+
+final class MonumentStylerProvider
+    extends
+        $FunctionalProvider<
+          Map<String, dynamic>,
+          Map<String, dynamic>,
+          Map<String, dynamic>
+        >
+    with $Provider<Map<String, dynamic>> {
+  const MonumentStylerProvider._({
+    required MonumentStylerFamily super.from,
+    required Monument super.argument,
+  }) : super(
+         retry: null,
+         name: r'monumentStylerProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$monumentStylerHash();
+
+  @override
+  String toString() {
+    return r'monumentStylerProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<Map<String, dynamic>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  Map<String, dynamic> create(Ref ref) {
+    final argument = this.argument as Monument;
+    return monumentStyler(ref, argument);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Map<String, dynamic> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Map<String, dynamic>>(value),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is MonumentStylerProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$monumentStylerHash() => r'634ae2be011a4c7eedb163bf08a30ceca865e9cb';
+
+final class MonumentStylerFamily extends $Family
+    with $FunctionalFamilyOverride<Map<String, dynamic>, Monument> {
+  const MonumentStylerFamily._()
+    : super(
+        retry: null,
+        name: r'monumentStylerProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  MonumentStylerProvider call(Monument monument) =>
+      MonumentStylerProvider._(argument: monument, from: this);
+
+  @override
+  String toString() => r'monumentStylerProvider';
+}

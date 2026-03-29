@@ -38,6 +38,7 @@ dependencies:
   freezed_annotation: ^3.1.0  # Immutable models
   json_annotation: 4.9.0     # JSON serialization
   google_maps_flutter: ^2.5.3 # Mapping heritage sites
+  google_sign_in: ^6.2.1      # For Google Authentication
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -53,6 +54,8 @@ dependencies:
   share_plus: ^12.0.1
   image_picker: ^1.2.1
   firebase_storage: ^13.2.0
+  cached_network_image: ^3.4.1
+  flutter_lints: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -63,12 +66,12 @@ dev_dependencies:
   json_serializable: ^6.7.1
   riverpod_lint: ^3.0.3       # Catching state management errors early
 
-  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+  http: any
 flutter:
 
   # The following line ensures that the Material Icons font is

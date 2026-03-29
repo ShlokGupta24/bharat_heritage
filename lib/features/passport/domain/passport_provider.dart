@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -53,18 +54,35 @@ Future<UserPassport> userPassport(Ref ref) async {
 // ---------------------------------------------------------------------------
 @riverpod
 Future<Position?> currentPosition(Ref ref) async {
-  LocationPermission permission = await Geolocator.checkPermission();
-  if (permission == LocationPermission.denied) {
-    permission = await Geolocator.requestPermission();
-  }
-  if (permission == LocationPermission.deniedForever) return null;
   try {
+    // 1. Check if services are enabled
+    final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) return null;
+
+    // 2. Check/Request permissions
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      return null;
+    }
+
+    // 3. Get position with high accuracy and a timeout to prevent hanging
     return await Geolocator.getCurrentPosition(
-      locationSettings:
-          const LocationSettings(accuracy: LocationAccuracy.high),
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high,
+        timeLimit: Duration(seconds: 10),
+      ),
     );
-  } catch (_) {
-    return null;
+  } catch (e) {
+    // If high accuracy fails or times out, try last known as a fallback
+    try {
+      return await Geolocator.getLastKnownPosition();
+    } catch (_) {
+      return null;
+    }
   }
 }
 
@@ -73,20 +91,24 @@ Future<Position?> currentPosition(Ref ref) async {
 // ---------------------------------------------------------------------------
 @riverpod
 Future<Monument?> nearbyMonument(Ref ref) async {
-  final position = await ref.watch(currentPositionProvider.future);
-  if (position == null) return null;
+  try {
+    final position = await ref.watch(currentPositionProvider.future);
+    if (position == null) return null;
 
-  final all = await ref.watch(monumentsProvider.future);
+    final all = await ref.watch(monumentsProvider.future);
 
-  for (final m in all) {
-    if (HaversineLogic.isWithin500m(
-      position.latitude,
-      position.longitude,
-      m.coordinates.lat,
-      m.coordinates.lon,
-    )) {
-      return m;
+    for (final m in all) {
+      if (HaversineLogic.isWithin500m(
+        position.latitude,
+        position.longitude,
+        m.coordinates.lat,
+        m.coordinates.lon,
+      )) {
+        return m;
+      }
     }
+  } catch (e) {
+    debugPrint('Error in nearbyMonumentProvider: $e');
   }
   return null;
 }
