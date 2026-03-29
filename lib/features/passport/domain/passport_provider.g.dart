@@ -205,6 +205,46 @@ final class NearbyMonumentProvider
 
 String _$nearbyMonumentHash() => r'8186626c42ce569c488e9daba872a368abbf906a';
 
+@ProviderFor(nearbyMonuments10km)
+const nearbyMonuments10kmProvider = NearbyMonuments10kmProvider._();
+
+final class NearbyMonuments10kmProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Monument>>,
+          List<Monument>,
+          FutureOr<List<Monument>>
+        >
+    with $FutureModifier<List<Monument>>, $FutureProvider<List<Monument>> {
+  const NearbyMonuments10kmProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'nearbyMonuments10kmProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$nearbyMonuments10kmHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<List<Monument>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<Monument>> create(Ref ref) {
+    return nearbyMonuments10km(ref);
+  }
+}
+
+String _$nearbyMonuments10kmHash() =>
+    r'16002b7cc0c4b427622266b5f75911e1550934f6';
+
 @ProviderFor(tryAwardStamp)
 const tryAwardStampProvider = TryAwardStampProvider._();
 

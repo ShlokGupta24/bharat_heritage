@@ -92,6 +92,27 @@ Future<Monument?> nearbyMonument(Ref ref) async {
 }
 
 // ---------------------------------------------------------------------------
+// All monuments within 10km of the user.
+// ---------------------------------------------------------------------------
+@riverpod
+Future<List<Monument>> nearbyMonuments10km(Ref ref) async {
+  final position = await ref.watch(currentPositionProvider.future);
+  if (position == null) return [];
+
+  final all = await ref.watch(monumentsProvider.future);
+
+  return all.where((m) {
+    final distance = HaversineLogic.calculateDistance(
+      position.latitude,
+      position.longitude,
+      m.coordinates.lat,
+      m.coordinates.lon,
+    );
+    return distance <= 10.0;
+  }).toList();
+}
+
+// ---------------------------------------------------------------------------
 // Awards a stamp if the user is near an un-stamped monument.
 // Call `ref.read(tryAwardStampProvider)` from the UI.
 // ---------------------------------------------------------------------------

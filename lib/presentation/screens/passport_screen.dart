@@ -22,6 +22,17 @@ class PassportScreen extends ConsumerStatefulWidget {
 
 class _PassportScreenState extends ConsumerState<PassportScreen> {
   bool _awarding = false;
+  String _selectedRegion = 'All';
+
+  String _getRegion(Coordinates coords) {
+    final lat = coords.lat;
+    final lon = coords.lon;
+    if (lon > 85) return 'East';
+    if (lat > 25.5) return 'North';
+    if (lat < 18) return 'South';
+    if (lon < 76) return 'West';
+    return 'Central';
+  }
 
   /// GPS check-in: invalidate stale position first, then try to award stamp.
   Future<void> _tryCheckIn() async {
@@ -105,6 +116,12 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
               monumentsAsync.when(
                 data: (monuments) {
                   final visitedIds = passportAsync.value?.visitedIds ?? {};
+                  
+                  // Filter monuments by selected region
+                  final filteredMonuments = _selectedRegion == 'All' 
+                      ? monuments 
+                      : monuments.where((m) => _getRegion(m.coordinates) == _selectedRegion).toList();
+
                   return SliverPadding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     sliver: SliverGrid(
@@ -116,11 +133,11 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
                       ),
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
-                          final m = monuments[index];
+                          final m = filteredMonuments[index];
                           final isUnlocked = visitedIds.contains(m.id);
                           return _buildStamp(m, isUnlocked, index);
                         },
-                        childCount: monuments.length,
+                        childCount: filteredMonuments.length,
                       ),
                     ),
                   );
@@ -135,7 +152,7 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
                 ),
                 error: (e, _) => SliverToBoxAdapter(
                   child: Center(
-                    child: Text('Failed to load stamps',
+                    child: Text('Failed to load stamps\n$e',
                         style: GoogleFonts.manrope(color: AppColors.onSurfaceVariant)),
                   ),
                 ),
@@ -305,16 +322,19 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
             Text('Achievement Badges',
                 style: GoogleFonts.notoSerif(
                     color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-            Row(
-              children: [
-                Text('VIEW ALL',
-                    style: GoogleFonts.manrope(
-                        color: AppColors.tertiary,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: 1.5)),
-                const Icon(Icons.arrow_forward, color: AppColors.tertiary, size: 14),
-              ],
+            GestureDetector(
+              onTap: () => _showAllBadgesBottomSheet(visited),
+              child: Row(
+                children: [
+                  Text('VIEW ALL',
+                      style: GoogleFonts.manrope(
+                          color: AppColors.tertiary,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 1.5)),
+                  const Icon(Icons.arrow_forward, color: AppColors.tertiary, size: 14),
+                ],
+              ),
             ),
           ],
         ),
@@ -472,6 +492,180 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
     );
   }
 
+  void _showAllBadgesBottomSheet(int visited) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.7,
+          decoration: BoxDecoration(
+            color: AppColors.surface,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            border: Border.all(color: Colors.white.withAlpha(26)),
+          ),
+          padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
+          child: Column(
+            children: [
+              Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: AppColors.outlineVariant,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(height: 24),
+              Text('All Achievement Badges',
+                  style: GoogleFonts.notoSerif(
+                      color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8),
+              Text('Earn badges by visiting UNESCO World Heritage Sites across India.',
+                  style: GoogleFonts.manrope(
+                      color: AppColors.onSurfaceVariant, fontSize: 13),
+                  textAlign: TextAlign.center),
+              const SizedBox(height: 24),
+              Expanded(
+                child: ListView(
+                  children: [
+                    _buildFullWidthBadgeCard(
+                      icon: Icons.workspace_premium,
+                      color: AppColors.tertiary,
+                      title: 'Mughal Explorer',
+                      subtitle: 'Visit your first heritage site',
+                      unlocked: visited >= 1,
+                      progress: '${min(visited, 1)}/1',
+                    ),
+                    const SizedBox(height: 12),
+                    _buildFullWidthBadgeCard(
+                      icon: Icons.temple_hindu,
+                      color: AppColors.secondary,
+                      title: 'Temple Trailblazer',
+                      subtitle: 'Uncover 3 heritage sites',
+                      unlocked: visited >= 3,
+                      progress: '${min(visited, 3)}/3',
+                    ),
+                    const SizedBox(height: 12),
+                    _buildFullWidthBadgeCard(
+                      icon: Icons.fort,
+                      color: AppColors.primary,
+                      title: 'Fort Sentinel',
+                      subtitle: 'Stand guard at 10 sites',
+                      unlocked: visited >= 10,
+                      progress: '${min(visited, 10)}/10',
+                    ),
+                    const SizedBox(height: 12),
+                    _buildFullWidthBadgeCard(
+                      icon: Icons.school,
+                      color: Colors.tealAccent,
+                      title: 'Heritage Scholar',
+                      subtitle: 'Deep dive into 20 sites',
+                      unlocked: visited >= 20,
+                      progress: '${min(visited, 20)}/20',
+                    ),
+                    const SizedBox(height: 12),
+                    _buildFullWidthBadgeCard(
+                      icon: Icons.explore,
+                      color: Colors.pinkAccent,
+                      title: 'Master Explorer',
+                      subtitle: 'Navigate to 30 sites',
+                      unlocked: visited >= 30,
+                      progress: '${min(visited, 30)}/30',
+                    ),
+                    const SizedBox(height: 12),
+                    _buildFullWidthBadgeCard(
+                      icon: Icons.landscape,
+                      color: Colors.amberAccent,
+                      title: 'Grand Adventurer',
+                      subtitle: 'Journey across 40 sites',
+                      unlocked: visited >= 40,
+                      progress: '${min(visited, 40)}/40',
+                    ),
+                    const SizedBox(height: 12),
+                    _buildFullWidthBadgeCard(
+                      icon: Icons.local_library,
+                      color: Colors.purpleAccent,
+                      title: 'Ultimate Historian',
+                      subtitle: 'Visit all 43 UNESCO sites',
+                      unlocked: visited >= 43,
+                      progress: '${min(visited, 43)}/43',
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildFullWidthBadgeCard({
+    required IconData icon,
+    required Color color,
+    required String title,
+    required String subtitle,
+    required bool unlocked,
+    required String progress,
+  }) {
+    return Opacity(
+      opacity: unlocked ? 1.0 : 0.5,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: AppColors.surfaceContainerHigh,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: (unlocked ? color : Colors.white).withAlpha(20)),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                  color: color.withAlpha(26), shape: BoxShape.circle),
+              child: Icon(icon, color: color, size: 28),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title,
+                      style: GoogleFonts.notoSerif(
+                          color: unlocked ? AppColors.onSurface : AppColors.onSurfaceVariant,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 4),
+                  Text(subtitle,
+                      style: GoogleFonts.manrope(
+                          color: AppColors.onSurfaceVariant, fontSize: 12),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(progress,
+                  style: GoogleFonts.manrope(
+                      color: color,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.5)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   // ─────────────────────────────────────────────── STAMPS SECTION HEADER ──────
   Widget _buildStampsHeader() {
     return Container(
@@ -485,24 +679,48 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
           Text('Site Stamps Journal',
               style: GoogleFonts.notoSerif(
                   color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-          Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
-            decoration: BoxDecoration(
-                color: AppColors.surfaceContainerHigh,
-                borderRadius: BorderRadius.circular(24)),
-            child: Row(
-              children: [
-                const Icon(Icons.filter_list,
-                    color: AppColors.onSurface, size: 14),
-                const SizedBox(width: 6),
-                Text('REGION',
-                    style: GoogleFonts.manrope(
-                        color: AppColors.onSurface,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.5)),
-              ],
+          PopupMenuButton<String>(
+            initialValue: _selectedRegion,
+            onSelected: (value) {
+              setState(() {
+                _selectedRegion = value;
+              });
+            },
+            color: AppColors.surfaceContainer,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            itemBuilder: (context) => [
+              'All',
+              'North',
+              'South',
+              'East',
+              'West',
+              'Central'
+            ].map((region) => PopupMenuItem(
+              value: region,
+              child: Text(region, style: GoogleFonts.manrope(
+                color: _selectedRegion == region ? AppColors.tertiary : AppColors.onSurface,
+                fontWeight: _selectedRegion == region ? FontWeight.bold : FontWeight.w500,
+              )),
+            )).toList(),
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+              decoration: BoxDecoration(
+                  color: AppColors.surfaceContainerHigh,
+                  borderRadius: BorderRadius.circular(24)),
+              child: Row(
+                children: [
+                  const Icon(Icons.filter_list,
+                      color: AppColors.onSurface, size: 14),
+                  const SizedBox(width: 6),
+                  Text(_selectedRegion.toUpperCase(),
+                      style: GoogleFonts.manrope(
+                          color: AppColors.onSurface,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.5)),
+                ],
+              ),
             ),
           ),
         ],
@@ -823,40 +1041,14 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
   }
 
   Widget _navItem(IconData icon, String label, bool isActive) {
-    if (isActive) {
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        decoration: BoxDecoration(
-          color: AppColors.secondaryContainer.withAlpha(51),
-          borderRadius: BorderRadius.circular(14),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, color: AppColors.tertiary, size: 24),
-            const SizedBox(height: 4),
-            Text(label.toUpperCase(),
-                style: GoogleFonts.manrope(
-                    color: AppColors.tertiary,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: 0.5)),
-          ],
-        ),
-      );
-    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, color: AppColors.onSurfaceVariant, size: 24),
+        Icon(icon, color: isActive ? AppColors.tertiary : AppColors.onSurfaceVariant, size: 24),
         const SizedBox(height: 4),
         Text(label.toUpperCase(),
-            style: GoogleFonts.manrope(
-                color: AppColors.onSurfaceVariant,
-                fontSize: 10,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 0.5)),
+            style: GoogleFonts.manrope(color: isActive ? AppColors.tertiary : AppColors.onSurfaceVariant,
+                fontSize: 10, fontWeight: FontWeight.w800, letterSpacing: 0.5)),
       ],
     );
   }
