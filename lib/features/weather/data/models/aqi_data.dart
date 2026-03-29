@@ -11,11 +11,16 @@ abstract class AqiData with _$AqiData {
   const factory AqiData({
     required String city,
     required String station,
-    required String lastUpdate,
-    required String pollutantId,
-    required String minValue,
-    required String maxValue,
-    required String avgValue,
+    // ignore: invalid_annotation_target
+    @JsonKey(name: 'last_update') required String lastUpdate,
+    // ignore: invalid_annotation_target
+    @JsonKey(name: 'pollutant_id') required String pollutantId,
+    // ignore: invalid_annotation_target
+    @JsonKey(name: 'min_value') required String minValue,
+    // ignore: invalid_annotation_target
+    @JsonKey(name: 'max_value') required String maxValue,
+    // ignore: invalid_annotation_target
+    @JsonKey(name: 'avg_value') required String avgValue,
     required String latitude,
     required String longitude,
   }) = _AqiData;

@@ -180,21 +180,24 @@ class _PassportScreenState extends ConsumerState<PassportScreen> {
       backgroundColor: AppColors.surface.withAlpha(204),
       surfaceTintColor: Colors.transparent,
       elevation: 0,
-      leading: IconButton(
-        icon: const Icon(Icons.menu, color: AppColors.tertiary),
-        onPressed: () {},
+      automaticallyImplyLeading: false,
+      title: Row(
+        children: [
+          Image.asset('design/screen.png', height: 26),
+          const SizedBox(width: 10),
+          Text('BharatHeritage',
+              style: GoogleFonts.notoSerif(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                  color: AppColors.onSurface,
+                  letterSpacing: -0.5)),
+        ],
       ),
-      title: Text('BharatHeritage',
-          style: GoogleFonts.notoSerif(
-              fontSize: 20,
-              fontWeight: FontWeight.w900,
-              color: AppColors.onSurface,
-              letterSpacing: -0.5)),
       actions: [
         IconButton(
-            icon: const Icon(Icons.notifications_none,
+            icon: const Icon(Icons.bookmark_border,
                 color: AppColors.onSurfaceVariant),
-            onPressed: () {}),
+            onPressed: () => context.push('/bookmarks')),
         const SizedBox(width: 8),
       ],
     );

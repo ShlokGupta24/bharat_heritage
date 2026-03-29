@@ -70,12 +70,14 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
     }
-    if (permission == LocationPermission.deniedForever) return;
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) return;
 
-    // Get an initial fast fix, then stream updates.
+    // Get an initial fix, then stream updates.
     try {
       final pos = await Geolocator.getCurrentPosition(
-        locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
+        locationSettings:
+            const LocationSettings(accuracy: LocationAccuracy.high),
       );
       if (mounted) setState(() => _currentPosition = pos);
     } catch (_) {}
@@ -83,11 +85,44 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
     Geolocator.getPositionStream(
       locationSettings: const LocationSettings(
         accuracy: LocationAccuracy.high,
-        distanceFilter: 20, // update every 20 m of movement
+        distanceFilter: 20,
       ),
     ).listen((pos) {
       if (mounted) setState(() => _currentPosition = pos);
     });
+  }
+
+  Future<void> _refreshLocationAndCenter() async {
+    try {
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+      }
+      if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Location permission denied. Please enable it in settings.')),
+          );
+        }
+        return;
+      }
+
+      final pos = await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
+      );
+      if (mounted) {
+        setState(() => _currentPosition = pos);
+        _mapController?.animateCamera(
+          CameraUpdate.newLatLngZoom(LatLng(pos.latitude, pos.longitude), 12),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not fetch current location. Please ensure GPS is enabled.')),
+        );
+      }
+    }
   }
 
   /// Haversine great-circle distance in km.
@@ -237,11 +272,8 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
         children: [
           Row(
             children: [
-              IconButton(
-                icon: const Icon(Icons.menu, color: AppColors.tertiary),
-                onPressed: () {},
-              ),
-              const SizedBox(width: 4),
+              Image.asset('design/screen.png', height: 26),
+              const SizedBox(width: 10),
               Text('BharatHeritage',
                 style: GoogleFonts.notoSerif(
                   fontSize: 20,
@@ -259,8 +291,9 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
                 onPressed: () => setState(() => _isSearching = true),
               ),
               IconButton(
-                icon: const Icon(Icons.notifications_none, color: AppColors.onSurfaceVariant),
-                onPressed: () {},
+                icon: const Icon(Icons.bookmark_border,
+                    color: AppColors.onSurfaceVariant),
+                onPressed: () => context.push('/bookmarks'),
               ),
               const SizedBox(width: 8),
             ],
@@ -496,9 +529,7 @@ class _HeritageAtlasScreenState extends ConsumerState<HeritageAtlasScreen>
     return Positioned(
       bottom: 120, right: 30,
       child: GestureDetector(
-        onTap: () {
-          _mapController?.animateCamera(CameraUpdate.newCameraPosition(_initialPosition));
-        },
+        onTap: _refreshLocationAndCenter,
         child: Opacity(
           opacity: 0.9,
           child: Container(

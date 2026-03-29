@@ -8,7 +8,8 @@ import '../../features/auth/domain/auth_provider.dart';
 import '../../presentation/screens/home_screen.dart';
 import 'package:bharat_heritage/presentation/screens/heritage_atlas_screen.dart';
 import 'package:bharat_heritage/presentation/screens/passport_screen.dart';
-
+import 'package:bharat_heritage/presentation/screens/monument_detail_screen.dart';
+import 'package:bharat_heritage/presentation/screens/bookmarks_screen.dart';
 part 'app_router.g.dart';
 
 T? listFirstWhere<T>(Iterable<T> list, bool Function(T) test) {
@@ -65,15 +66,17 @@ GoRouter appRouter(Ref ref) {
         path: '/signup',
         builder: (context, state) => const SignUpScreen(),
       ),
-      /*GoRoute(
+      GoRoute(
         path: '/monument/:id',
         builder: (context, state) {
-          final id = state.pathParameters['id'];
-          final List<Monument> monuments = ref.watch(monumentsProvider).value ?? [];
-          final monument = listFirstWhere(monuments, (m) => m.id == id) ?? monuments.first;
-          return MonumentDetailScreen(monument: monument);
+          final id = state.pathParameters['id']!;
+          return MonumentDetailScreen(monumentId: id);
         },
-      ),*/
+      ),
+      GoRoute(
+        path: '/bookmarks',
+        builder: (context, state) => const BookmarksScreen(),
+      ),
     ],
   );
 }

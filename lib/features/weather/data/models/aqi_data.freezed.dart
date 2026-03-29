@@ -15,7 +15,12 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AqiData {
 
- String get city; String get station; String get lastUpdate; String get pollutantId; String get minValue; String get maxValue; String get avgValue; String get latitude; String get longitude;
+ String get city; String get station;// ignore: invalid_annotation_target
+@JsonKey(name: 'last_update') String get lastUpdate;// ignore: invalid_annotation_target
+@JsonKey(name: 'pollutant_id') String get pollutantId;// ignore: invalid_annotation_target
+@JsonKey(name: 'min_value') String get minValue;// ignore: invalid_annotation_target
+@JsonKey(name: 'max_value') String get maxValue;// ignore: invalid_annotation_target
+@JsonKey(name: 'avg_value') String get avgValue; String get latitude; String get longitude;
 /// Create a copy of AqiData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +53,7 @@ abstract mixin class $AqiDataCopyWith<$Res>  {
   factory $AqiDataCopyWith(AqiData value, $Res Function(AqiData) _then) = _$AqiDataCopyWithImpl;
 @useResult
 $Res call({
- String city, String station, String lastUpdate, String pollutantId, String minValue, String maxValue, String avgValue, String latitude, String longitude
+ String city, String station,@JsonKey(name: 'last_update') String lastUpdate,@JsonKey(name: 'pollutant_id') String pollutantId,@JsonKey(name: 'min_value') String minValue,@JsonKey(name: 'max_value') String maxValue,@JsonKey(name: 'avg_value') String avgValue, String latitude, String longitude
 });
 
 
@@ -161,7 +166,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String city,  String station,  String lastUpdate,  String pollutantId,  String minValue,  String maxValue,  String avgValue,  String latitude,  String longitude)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String city,  String station, @JsonKey(name: 'last_update')  String lastUpdate, @JsonKey(name: 'pollutant_id')  String pollutantId, @JsonKey(name: 'min_value')  String minValue, @JsonKey(name: 'max_value')  String maxValue, @JsonKey(name: 'avg_value')  String avgValue,  String latitude,  String longitude)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AqiData() when $default != null:
 return $default(_that.city,_that.station,_that.lastUpdate,_that.pollutantId,_that.minValue,_that.maxValue,_that.avgValue,_that.latitude,_that.longitude);case _:
@@ -182,7 +187,7 @@ return $default(_that.city,_that.station,_that.lastUpdate,_that.pollutantId,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String city,  String station,  String lastUpdate,  String pollutantId,  String minValue,  String maxValue,  String avgValue,  String latitude,  String longitude)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String city,  String station, @JsonKey(name: 'last_update')  String lastUpdate, @JsonKey(name: 'pollutant_id')  String pollutantId, @JsonKey(name: 'min_value')  String minValue, @JsonKey(name: 'max_value')  String maxValue, @JsonKey(name: 'avg_value')  String avgValue,  String latitude,  String longitude)  $default,) {final _that = this;
 switch (_that) {
 case _AqiData():
 return $default(_that.city,_that.station,_that.lastUpdate,_that.pollutantId,_that.minValue,_that.maxValue,_that.avgValue,_that.latitude,_that.longitude);case _:
@@ -202,7 +207,7 @@ return $default(_that.city,_that.station,_that.lastUpdate,_that.pollutantId,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String city,  String station,  String lastUpdate,  String pollutantId,  String minValue,  String maxValue,  String avgValue,  String latitude,  String longitude)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String city,  String station, @JsonKey(name: 'last_update')  String lastUpdate, @JsonKey(name: 'pollutant_id')  String pollutantId, @JsonKey(name: 'min_value')  String minValue, @JsonKey(name: 'max_value')  String maxValue, @JsonKey(name: 'avg_value')  String avgValue,  String latitude,  String longitude)?  $default,) {final _that = this;
 switch (_that) {
 case _AqiData() when $default != null:
 return $default(_that.city,_that.station,_that.lastUpdate,_that.pollutantId,_that.minValue,_that.maxValue,_that.avgValue,_that.latitude,_that.longitude);case _:
@@ -217,16 +222,21 @@ return $default(_that.city,_that.station,_that.lastUpdate,_that.pollutantId,_tha
 @JsonSerializable()
 
 class _AqiData implements AqiData {
-  const _AqiData({required this.city, required this.station, required this.lastUpdate, required this.pollutantId, required this.minValue, required this.maxValue, required this.avgValue, required this.latitude, required this.longitude});
+  const _AqiData({required this.city, required this.station, @JsonKey(name: 'last_update') required this.lastUpdate, @JsonKey(name: 'pollutant_id') required this.pollutantId, @JsonKey(name: 'min_value') required this.minValue, @JsonKey(name: 'max_value') required this.maxValue, @JsonKey(name: 'avg_value') required this.avgValue, required this.latitude, required this.longitude});
   factory _AqiData.fromJson(Map<String, dynamic> json) => _$AqiDataFromJson(json);
 
 @override final  String city;
 @override final  String station;
-@override final  String lastUpdate;
-@override final  String pollutantId;
-@override final  String minValue;
-@override final  String maxValue;
-@override final  String avgValue;
+// ignore: invalid_annotation_target
+@override@JsonKey(name: 'last_update') final  String lastUpdate;
+// ignore: invalid_annotation_target
+@override@JsonKey(name: 'pollutant_id') final  String pollutantId;
+// ignore: invalid_annotation_target
+@override@JsonKey(name: 'min_value') final  String minValue;
+// ignore: invalid_annotation_target
+@override@JsonKey(name: 'max_value') final  String maxValue;
+// ignore: invalid_annotation_target
+@override@JsonKey(name: 'avg_value') final  String avgValue;
 @override final  String latitude;
 @override final  String longitude;
 
@@ -263,7 +273,7 @@ abstract mixin class _$AqiDataCopyWith<$Res> implements $AqiDataCopyWith<$Res> {
   factory _$AqiDataCopyWith(_AqiData value, $Res Function(_AqiData) _then) = __$AqiDataCopyWithImpl;
 @override @useResult
 $Res call({
- String city, String station, String lastUpdate, String pollutantId, String minValue, String maxValue, String avgValue, String latitude, String longitude
+ String city, String station,@JsonKey(name: 'last_update') String lastUpdate,@JsonKey(name: 'pollutant_id') String pollutantId,@JsonKey(name: 'min_value') String minValue,@JsonKey(name: 'max_value') String maxValue,@JsonKey(name: 'avg_value') String avgValue, String latitude, String longitude
 });
 
 

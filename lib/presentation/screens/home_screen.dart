@@ -98,15 +98,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       backgroundColor: AppColors.surface.withAlpha(204),
       surfaceTintColor: Colors.transparent,
       elevation: 0,
-      leading: IconButton(
-        icon: const Icon(Icons.menu, color: AppColors.tertiary),
-        onPressed: () {},
+      automaticallyImplyLeading: false,
+      title: Row(
+        children: [
+          Image.asset('design/screen.png', height: 26),
+          const SizedBox(width: 10),
+          Text('BharatHeritage',
+              style: GoogleFonts.notoSerif(fontSize: 20, fontWeight: FontWeight.w900, color: AppColors.onSurface, letterSpacing: -0.5)),
+        ],
       ),
-      title: Text('BharatHeritage',
-          style: GoogleFonts.notoSerif(fontSize: 20, fontWeight: FontWeight.w900, color: AppColors.onSurface, letterSpacing: -0.5)),
       actions: [
         IconButton(icon: const Icon(Icons.search, color: AppColors.onSurfaceVariant), onPressed: () => setState(() => _isSearching = true)),
-        IconButton(icon: const Icon(Icons.notifications_none, color: AppColors.onSurfaceVariant), onPressed: () {}),
+        IconButton(icon: const Icon(Icons.bookmark_border, color: AppColors.onSurfaceVariant), onPressed: () => context.push('/bookmarks')),
         const SizedBox(width: 8),
       ],
     );
@@ -562,13 +565,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       const SizedBox(height: 12),
                       Wrap(
                         spacing: 8, runSpacing: 8, alignment: WrapAlignment.center,
-                        children: monuments.map((m) => Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: AppColors.surfaceContainerHighest,
-                            borderRadius: BorderRadius.circular(12),
+                        children: monuments.map((m) => GestureDetector(
+                          onTap: () => context.push('/monument/${m.id}'),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: AppColors.surfaceContainerHighest,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(m.name, style: GoogleFonts.manrope(color: AppColors.onSurfaceVariant, fontSize: 10, fontWeight: FontWeight.bold)),
                           ),
-                          child: Text(m.name, style: GoogleFonts.manrope(color: AppColors.onSurfaceVariant, fontSize: 10, fontWeight: FontWeight.bold)),
                         )).toList(),
                       ),
                     ],
@@ -918,9 +924,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           decoration: BoxDecoration(
             color: AppColors.surfaceContainerHigh,
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: AppColors.tertiary.withOpacity(0.5), width: 2),
+            border: Border.all(color: AppColors.tertiary.withValues(alpha: 0.5), width: 2),
             boxShadow: [
-              BoxShadow(color: AppColors.tertiary.withOpacity(0.3), blurRadius: 40, spreadRadius: 10),
+              BoxShadow(color: AppColors.tertiary.withValues(alpha: 0.3), blurRadius: 40, spreadRadius: 10),
             ],
           ),
           child: Column(
